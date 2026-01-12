@@ -5,6 +5,8 @@ const Listing = require("./models/listing.js");
 const path = require("path");
 const methodOverride=require("method-override");
 const ejsMate=require("ejs-mate");
+const wrapAsync=require("./utils/wrapAsync.js");
+const ExpressError=require("./utils/ExpressError.js");
 
 app.engine("ejs",ejsMate);
 app.set("view engine","ejs");
@@ -63,12 +65,13 @@ app.get("/listings/:id",async (req,res)=>{
 })
 
 //Create Route
-app.post("/listings", async (req,res)=>{
-    const newListing=new Listing(req.body.listing);
-    await newListing.save();
-    res.redirect("/listings");
-    console.log(listing);
-});
+app.post("/listings", wrapAsync (async(req,res,next)=>{
+        const newListing=new Listing(req.body.listing);
+        await newListing.save();
+        res.redirect("/listings");
+        console.log(listing);
+    })
+);
 
 //Edit Route
 app.get("/listings/:id/edit", async(req,res)=>{
@@ -94,6 +97,20 @@ app.delete("/listings/:id",async (req,res)=>{
     let deletedListing=await Listing.findByIdAndDelete(id);
     res.redirect("/listings");
 })
+
+app.use((req, res, next) => {
+    next(new ExpressError(404, "Page Not Found"));
+}); 
+
+app.use((err,req,res,next)=>{
+    let{statusCode,message}=err;
+    res.render("error.ejs",{message});
+    //res.status(statusCode).send(message);
+});
+
+app.use((err,req,res,next)=>{
+    res.send("something went wrong");
+});
 
 app.listen(8080,()=>{
     console.log("server is listening");
