@@ -7,6 +7,7 @@ const methodOverride=require("method-override");
 const ejsMate=require("ejs-mate");
 const wrapAsync=require("./utils/wrapAsync.js");
 const ExpressError=require("./utils/ExpressError.js");
+const {listingSchema}=require("./schema.js");
 
 app.engine("ejs",ejsMate);
 app.set("view engine","ejs");
@@ -66,19 +67,11 @@ app.get("/listings/:id",async (req,res)=>{
 
 //Create Route
 app.post("/listings", wrapAsync (async(req,res,next)=>{
-    if(!req.body.listing){
-        throw new ExpressError(400,"send valid listing");
+    let result = listingSchema.validate(req.body);
+    if(result.error){
+        throw new ExpressError(400,result.error);
     }
     const newListing=new Listing(req.body.listing);
-    if(!newListing.title){
-        throw new ExpressError(400,"Invalid Title");
-    }
-    if(!newListing.description){
-        throw new ExpressError(400,"Invalid description");
-    }
-    if(!newListing.location){
-        throw new ExpressError(400,"Invalid Title");
-    }
     await newListing.save();
     res.redirect("/listings");
     console.log(listing);
