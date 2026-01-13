@@ -66,10 +66,22 @@ app.get("/listings/:id",async (req,res)=>{
 
 //Create Route
 app.post("/listings", wrapAsync (async(req,res,next)=>{
-        const newListing=new Listing(req.body.listing);
-        await newListing.save();
-        res.redirect("/listings");
-        console.log(listing);
+    if(!req.body.listing){
+        throw new ExpressError(400,"send valid listing");
+    }
+    const newListing=new Listing(req.body.listing);
+    if(!newListing.title){
+        throw new ExpressError(400,"Invalid Title");
+    }
+    if(!newListing.description){
+        throw new ExpressError(400,"Invalid description");
+    }
+    if(!newListing.location){
+        throw new ExpressError(400,"Invalid Title");
+    }
+    await newListing.save();
+    res.redirect("/listings");
+    console.log(listing);
     })
 );
 
