@@ -7,7 +7,7 @@ const methodOverride=require("method-override");
 const ejsMate=require("ejs-mate");
 const wrapAsync=require("./utils/wrapAsync.js");
 const ExpressError=require("./utils/ExpressError.js");
-const {listingSchema}=require("./schema.js");
+const {listingsSchema}=require("./schema.js");
 
 app.engine("ejs",ejsMate);
 app.set("view engine","ejs");
@@ -30,7 +30,7 @@ app.get("/",(req,res)=>{
 })
 
 const validateListing=(req,res,next)=>{
-    let {error}=listingSchema.validate(req.body);
+    let {error}=listingsSchema.validate(req.body);
     if(error){
         let errMsg=error.detail.map((el)=>el.message).join(",");
         throw new ExpressError(400,errMsg);
