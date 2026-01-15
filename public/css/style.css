@@ -53,7 +53,9 @@ body{
 /* cards */
 .card{
     border:none !important;
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
+    /* margin-bottom: 1.5rem; */
+    margin-top: 0.5rem;
 }
 .card-img-top{
     border-radius: 1rem;
@@ -77,7 +79,7 @@ body{
   }
   
   .card-img-overlay:hover {
-    background-color: #ebebeb;
+    /* background-color: #ebebeb; */
     opacity: 0.4; 
     color: #222222;
   }
