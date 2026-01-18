@@ -1,56 +1,84 @@
 <% layout("/layouts/boilerplate") %>
-<body>
-<div class="row">
-    <div class="col-8 offset-2">
-        <h3>Edit Your Listing</h3>
-        <form method="post" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation">
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
             
-            <div class="mb-3">
-                <label for="title" class="form-label">Enter Title</label>
-                <input name="listing[title]" value="<%= listing.title %>" class="form-control" type="text" required>
-                <div class="invalid-feedback">Enter valid title</div>
-                <div class="valid-feedback">looks good</div>
-            </div>
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body p-4">
+                    
+                    <h4 class="mb-4 fw-semibold text-center">Edit Listing</h4>
 
-            <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea name="listing[description]" class="form-control" required><%= listing.description %></textarea>
-                <div class="invalid-feedback">Enter valid description</div>
-                <div class="valid-feedback">looks good</div>
-            </div>
+                    <form method="post" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate>
 
-            <div class="mb-3">
-                <label for="image" class="form-label">Image</label>
-                <input name="listing[image]" value="<%= listing.image %>" placeholder="Enter image URL/Link" class="form-control" required>
-                <div class="invalid-feedback">Enter valid image url</div>
-                <div class="valid-feedback">looks good</div>
-            </div>
+                        <div class="mb-3">
+                            <input 
+                                name="listing[title]" 
+                                value="<%= listing.title %>" 
+                                class="form-control rounded-3" 
+                                type="text" 
+                                placeholder="Title"
+                                required>
+                        </div>
 
-            <div class="row">
-                <div class="mb-3 col-4">
-                    <label for="price" class="form-label">Price</label>
-                    <input name="listing[price]" value="<%= listing.price %>" placeholder="Enter price" class="form-control" required>
-                    <div class="invalid-feedback">Enter valid price</div>
-                    <div class="valid-feedback">looks good</div>
+                        <div class="mb-3">
+                            <textarea 
+                                name="listing[description]" 
+                                class="form-control rounded-3" 
+                                rows="3"
+                                placeholder="Description"
+                                required><%= listing.description %></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <input 
+                                name="listing[image]" 
+                                value="<%= listing.image %>" 
+                                class="form-control rounded-3" 
+                                placeholder="Image URL"
+                                required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <input 
+                                    name="listing[price]" 
+                                    value="<%= listing.price %>" 
+                                    class="form-control rounded-3" 
+                                    placeholder="Price"
+                                    required>
+                            </div>
+
+                            <div class="col-md-8 mb-3">
+                                <input 
+                                    name="listing[country]" 
+                                    value="<%= listing.country %>" 
+                                    class="form-control rounded-3" 
+                                    placeholder="Country"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <input 
+                                name="listing[location]" 
+                                value="<%= listing.location %>" 
+                                class="form-control rounded-3" 
+                                placeholder="Location"
+                                required>
+                        </div>
+
+                        <div class="d-grid">
+                            <button class="btn btn-dark rounded-3 py-2">
+                                Update Listing
+                            </button>
+                        </div>
+
+                    </form>
+
                 </div>
-
-                <div class="mb-3 col-8">
-                    <label for="country" class="form-label">Country</label>
-                    <input name="listing[country]" value="<%= listing.country %>" placeholder="Enter country" class="form-control" required>
-                    <div class="invalid-feedback">Enter valid country</div>
-                    <div class="valid-feedback">looks good</div>
-                </div>
             </div>
 
-            <div class="mb-3">
-                <label for="location" class="form-label">Location</label>
-                <input name="listing[location]" value="<%= listing.location %>" placeholder="Enter location" class="form-control" required>
-                <div class="invalid-feedback">Enter valid location</div>
-                <div class="valid-feedback">looks good</div>
-            </div>
-            
-            <button class="btn btn-dark edit-btn">Edit</button><br><br>
-        </form>
+        </div>
     </div>
 </div>
-</body>
