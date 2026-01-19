@@ -58,7 +58,7 @@ body{
     margin-top: 0.5rem;
 }
 .card-img-top{
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     width: 100% !important;
     object-fit: cover !important;
 }
