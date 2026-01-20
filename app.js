@@ -70,6 +70,19 @@ app.get("/listings/new",validateListing,
     res.render("listings/new.ejs")
 })
 
+// ABOUT PAGE FIRST
+app.get("/listings/about", (req, res) => {
+    res.render("listings/about");
+});
+
+// ❌ KEEP THIS BELOW
+app.get("/listings/:id", async (req, res) => {
+    const { id } = req.params;
+    const listing = await Listing.findById(id);
+    res.render("listings/show", { listing });
+});
+
+
 //Show Route
 app.get("/listings/:id",
     async (req,res)=>{
