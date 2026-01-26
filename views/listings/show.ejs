@@ -40,4 +40,26 @@
 
     </div>
   </div>
+  <div class="col-md-8 col-lg-6 mt-5">
+    <hr/>
+    <h4>Leave Review</h4>
+    <form action="/listings/<%=listing._id%>/reviews" method="POST">
+      <div class="mb-3 mt-3">
+        <label for="rating" class="form-label">rating</label>
+        <input type="range" min="1" max="5" id="rating" name="review[rating]" class="form-range">
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="comment" class="form-label">comments</label>
+        <textarea 
+          name="review[comment]" 
+          id="comment" cols="30" 
+          rows="10"  
+          novalidate 
+          class="form-control needs-validation" 
+          >
+        </textarea>
+      </div>
+      <button class="btn btn-dark add-btn mt-2">Submit</button>
+    </form>
+  </div>
 </div>
