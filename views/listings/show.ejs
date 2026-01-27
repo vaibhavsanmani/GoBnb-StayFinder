@@ -50,16 +50,16 @@
       </div>
       <div class="mb-3 mt-3">
         <label for="comment" class="form-label">comments</label>
-        <textarea 
-          name="review[comment]" 
-          id="comment" cols="30" 
-          rows="10"  
-          novalidate 
-          class="form-control needs-validation" 
-          >
-        </textarea>
+        <textarea name="review[comment]" id="comment" cols="30" rows="10" novalidate class="form-control needs-validation"></textarea>
       </div>
       <button class="btn btn-dark add-btn mt-2">Submit</button>
     </form>
+    <hr/>
+    <h4>All Reviews</h4>
+    <ul>
+    <%for(review of listing.reviews){%>
+      <li><%=review.comment%>,<%=review.rating%></li>
+    <%}%>
+  </ul>
   </div>
 </div>
