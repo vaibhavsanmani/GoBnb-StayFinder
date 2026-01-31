@@ -17,7 +17,7 @@ const validateReview = (req, res, next) => {
     next();
 };
 
-// CREATE REVIEW
+// Create Review
 router.post(
   "/",
   validateReview,
@@ -33,7 +33,7 @@ router.post(
   })
 );
 
-// DELETE REVIEW
+// Delete Review
 router.delete(
   "/:reviewId",
   wrapAsync(async (req, res) => {

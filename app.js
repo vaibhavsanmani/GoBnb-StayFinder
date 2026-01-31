@@ -11,6 +11,8 @@ const { listingSchema, reviewSchema } = require("./schema.js");
 const Review = require("./models/review.js");
 const listings =require("./routes/listing.js");
 const reviewRoutes =require("./routes/review.js");
+const session=require("express-session");
+const flash=require("connect-flash");
 
 app.engine("ejs",ejsMate);
 app.set("view engine","ejs");
@@ -28,8 +30,26 @@ async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
 }
 
+const sessionOptions={
+    secret:"mysupersecretcode",
+    resave:false,
+    saveUninitialized:true,
+    cookie:{
+        expires:Date.now()+7*24*60*60*1000,
+        maxAge:7*24*60*60*1000,
+    },
+}
+
 app.get("/",(req,res)=>{
     res.send("working");
+})
+
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use((req,res,next)=>{
+    res.locals.success=req.flash("success");
+    next();
 })
 
 app.use("/listings",listings);
@@ -47,21 +67,6 @@ app.get("/testListing",async (req,res)=>{
     console.log("saved");
     res.send("successfull"); 
 })
-
-
-
-
-// app.get("/listings/:id", async (req, res) => {
-//     const { id } = req.params;
-//     const listing = await Listing.findById(id);
-//     res.render("listings/show", { listing });
-// });
-
-
-
-
-
-
 app.use((req, res, next) => {
     next(new ExpressError(404, "Page Not Found"));
 }); 
