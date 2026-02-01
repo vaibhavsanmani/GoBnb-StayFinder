@@ -40,16 +40,17 @@ const sessionOptions={
     },
 }
 
-app.get("/",(req,res)=>{
-    res.send("working");
-})
-
 app.use(session(sessionOptions));
 app.use(flash());
 
 app.use((req,res,next)=>{
     res.locals.success=req.flash("success");
     next();
+})
+
+
+app.get("/",(req,res)=>{
+    res.send("working");
 })
 
 app.use("/listings",listings);
@@ -75,10 +76,6 @@ app.use((err,req,res,next)=>{
     let{statusCode,message}=err;
     res.render("error.ejs",{message});
     //res.status(statusCode).send(message);
-});
-
-app.use((err,req,res,next)=>{
-    res.send("something went wrong");
 });
 
 app.listen(8080,()=>{
