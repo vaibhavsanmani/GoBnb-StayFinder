@@ -51,7 +51,7 @@ app.use((req,res,next)=>{
 
 
 app.get("/",(req,res)=>{
-    res.send("working");
+    res.send("server is okay");
 })
 
 app.use("/listings",listings);
