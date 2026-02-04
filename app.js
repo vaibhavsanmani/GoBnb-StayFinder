@@ -9,10 +9,14 @@ const wrapAsync=require("./utils/wrapAsync.js");
 const ExpressError=require("./utils/ExpressError.js");
 const { listingSchema, reviewSchema } = require("./schema.js");
 const Review = require("./models/review.js");
+const userRouter = require("./routes/user.js");
 const listings =require("./routes/listing.js");
 const reviewRoutes =require("./routes/review.js");
 const session=require("express-session");
 const flash=require("connect-flash");
+const passport=require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const User=require("./models/user.js");
 
 app.engine("ejs",ejsMate);
 app.set("view engine","ejs");
@@ -43,12 +47,28 @@ const sessionOptions={
 app.use(session(sessionOptions));
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
 app.use((req,res,next)=>{
     res.locals.success=req.flash("success");
     res.locals.error=req.flash("error");
     next();
 })
 
+app.get("/demouser",async(req,res)=>{
+    let fakeUser=new User({
+        email:"student@gmail.com",
+        username:"sigma-student"
+    });
+    let registeredUser=await User.register(fakeUser,"helloworld");
+    res.send(registeredUser);
+})
 
 app.get("/",(req,res)=>{
     res.send("server is okay");
@@ -56,6 +76,7 @@ app.get("/",(req,res)=>{
 
 app.use("/listings",listings);
 app.use("/listings/:id/reviews", reviewRoutes);
+app.use("/", userRouter);
 
 app.get("/testListing",async (req,res)=>{
     let sampleListing=new Listing({
