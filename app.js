@@ -17,7 +17,7 @@ const flash=require("connect-flash");
 const passport=require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User=require("./models/user.js");
-const {isLoggedIn}=require("../middlewear.js");
+const { isLoggedIn } = require("./middleware.js");
 
 app.engine("ejs",ejsMate);
 app.set("view engine","ejs");
