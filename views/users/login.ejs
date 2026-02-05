@@ -1,10 +1,10 @@
 <% layout("/layouts/boilerplate") %>
 
 <div class="row mt-3">
-    <h1 class="col-6 offset-3">Signup on GoBnb</h1>
+    <h1 class="col-6 offset-3">login on GoBnb</h1>
 
     <div class="col-6 offset-3">
-        <form action="/signup" method="POST" class="needs-validation" novalidate>
+        <form action="/login" method="POST" class="needs-validation" novalidate>
 
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
@@ -18,17 +18,6 @@
             </div>
 
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input 
-                    id="email"
-                    name="email"
-                    type="email"
-                    class="form-control"
-                    required>
-                <div class="invalid-feedback">Email is required</div>
-            </div>
-
-            <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input 
                     id="password"
@@ -39,7 +28,7 @@
                 <div class="invalid-feedback">Password is required</div>
             </div>
 
-            <button class="btn btn-dark mb-2">Signup</button>
+            <button class="btn btn-dark mb-2">Login</button>
         </form>
     </div>
 </div>
