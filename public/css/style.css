@@ -129,3 +129,10 @@ body{
     background-color: #dc3545;
     color: #fff;
   }
+
+.owner{
+    background-color:lightgray;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 2.5px;  
+}

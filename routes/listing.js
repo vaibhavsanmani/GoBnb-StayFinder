@@ -36,21 +36,27 @@ router.get("/about", (req, res) => {
 });
 
 //Show Route
-router.get("/:id",
-    async (req,res)=>{
-    let {id}=req.params;
-    const listing = await Listing.findById(id).populate("reviews");
-    if (!listing) {
-        req.flash("error","listing not found!!");
-        res.redirect("/listings");
-    }
-    res.render("listings/show.ejs", { listing });
-})
+router.get(
+    "/:id",
+    wrapAsync(async (req, res) => {
+      let { id } = req.params;
+      const listing = await Listing.findById(id)
+        .populate("owner")
+        .populate("reviews");
+      if (!listing) {
+        req.flash("error", "Listing not found!!");
+        return res.redirect("/listings");
+      }
+      res.render("listings/show.ejs", { listing });
+    })
+  );
+  
 
 //Create Route
 router.post("/", isLoggedIn,validateListing,
     wrapAsync (async(req,res,next)=>{
     const newListing=new Listing(req.body.listing);
+    newListing.owner=req.user._id;
     await newListing.save();
     req.flash("success","New listing created!!");
     return res.redirect("/listings");

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { data } = require("./data.js");  // <-- get array directly
+const { data } = require("./data.js");
 const Listing = require("../models/listing.js");
 
 main()
@@ -12,7 +12,13 @@ async function main() {
 
 const initDB = async () => {
   await Listing.deleteMany({});
-  const res = await Listing.insertMany(data);
+
+  const listingsWithOwner = data.map((obj) => ({
+    ...obj,
+    owner: new mongoose.Types.ObjectId("69838fcfe65849cdf0db0ed2"),
+  }));
+
+  const res = await Listing.insertMany(listingsWithOwner);
   console.log(`${res.length} listings inserted`);
 };
 
