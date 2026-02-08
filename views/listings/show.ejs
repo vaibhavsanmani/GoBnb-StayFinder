@@ -34,7 +34,8 @@
 
           <hr>
 
-          <div class="d-flex justify-content-between">
+          <% if (typeof currUser !== "undefined" && currUser && listing.owner && currUser._id.equals(listing.owner._id)) { %>
+            <div class="d-flex justify-content-between">
             <a 
               href="/listings/<%= listing._id %>/edit"
               class="btn btn-outline-primary rounded-pill px-4">
@@ -49,6 +50,7 @@
               </button>
             </form>
           </div>
+        <%}%>
         </div>
       </div>
 
@@ -56,6 +58,7 @@
   </div>
 
   <!-- REVIEW SECTION -->
+   <%if(currUser){%>
   <div class="row justify-content-center mt-5">
     <div class="col-md-8 col-lg-6">
 
@@ -87,7 +90,7 @@
 
         <button class="btn btn-dark btn-sm">Submit</button>
       </form>
-
+      <%}%>
       <hr class="my-4">
 
       <h5>All Reviews</h5>
@@ -98,7 +101,7 @@
           <div class="col-md-6 mb-3">
             <div class="card shadow-sm h-100">
               <div class="card-body">
-                <h6 class="card-title m-1">Jane Doe</h6>
+                <h6 class="card-title m-1 owner"><%= review.author.username %></h6>
                 <p class="card-text m-1"><%= review.comment %></p>
                 <small class="text-muted m-1">
                   Rating: <%= review.rating %> ⭐
