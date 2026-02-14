@@ -17,28 +17,24 @@ const validateListing=(req,res,next)=>{
     }
 };
 
-//Index Route
-router.get("/",wrapAsync(listingController.index));
+router
+    .route("/")
+    .get(wrapAsync(listingController.index))
+    .post(isLoggedIn,validateListing,wrapAsync(listingController.createListing))
 
 //New Route
 router.get("/new",isLoggedIn,listingController.renderNewForm);
 
+router
+    .route("/:id")
+    .get(wrapAsync(listingController.showListing))
+    .put(validateListing,isLoggedIn,listingController.updatelisting)
+    .delete(isLoggedIn,listingController.deleteListing)
+
 //About Route
 router.get("/about", listingController.about);
 
-//Show Route
-router.get("/:id",wrapAsync(listingController.showListing));
-
-//Create Route
-router.post("/", isLoggedIn,validateListing,wrapAsync(listingController.createListing));
-
 //Edit Route
 router.get("/:id/edit",isLoggedIn, listingController.editListing);
-
-//Update Route
-router.put("/:id",validateListing,isLoggedIn,listingController.updatelisting);
-
-//Delete Route
-router.delete("/:id",isLoggedIn,listingController.deleteListing);
 
 module.exports=router;

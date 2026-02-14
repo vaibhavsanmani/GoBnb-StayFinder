@@ -4,51 +4,25 @@ const User=require("../models/user.js");
 const wrapAsync = require("../utils/wrapAsync");
 const passport=require("passport");
 const { saveRedirectUrl } = require("../middleware.js");
+const userController=require("../controllers/usesr.js");
 
-router.get("/signup",(req,res)=>{
-    res.render("users/signup.ejs");
-});
 
-router.post("/signup",wrapAsync(async(req,res)=>{
-    try{
-    let {username,email,password}=req.body;
-    const newUser = new User({email,username});
-    const registeredUser=await User.register(newUser,password);
-    console.log(registeredUser);
-    req.login(registeredUser,(err)=>{
-        if(err){
-            return next(err);
-        }
-        req.flash("success","Welcome to Wanderlust");
-        res.redirect("/listings");
-    });
-    }catch(e){
-        req.flash("error",e.message);
-        res.redirect("/signup");
-    }
-}));
+router
+    .route("/signup")
+    .get(userController.renderSignupForm)
+    .post(wrapAsync(userController.signup));
 
-router.get("/login",(req,res)=>{
-    res.render("users/login.ejs")
-})
+router
+    .route("/login")
+    .get(userController.renderLoginForm)
+    .post(
+        saveRedirectUrl,
+        passport.authenticate("local",{
+            faliureRedirect:"/login",
+            faliureflash:true}),
+            userController.validateLogin
+);
 
-router.post("/login" ,
-    saveRedirectUrl,
-    passport.authenticate("local",{
-        faliureRedirect:"/login",
-        faliureflash:true}),
-        async(req,res)=>{
-            req.flash("success","Welcome to Gobnb");
-            res.redirect(res.locals.redirectUrl || "/listings");
-})
+router.get("/logout",userController.logout);
 
-router.get("/logout",(req,res)=>{
-    req.logout((err)=>{
-        if(err){
-            return next(err);
-        }
-        req.flash("success","you are logged out");
-        res.redirect("/listings");
-    })
-})
 module.exports=router;
