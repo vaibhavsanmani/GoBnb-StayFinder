@@ -69,16 +69,30 @@
         action="/listings/<%= listing._id %>/reviews"
         method="POST">
 
-        <div class="mb-3">
-          <label class="form-label">Rating</label>
+      <div class="mb-1 mt-3">
+        <label for="rating" class="form-label">Rating</label>
+        <fieldset class="starability-slot">
           <input 
-            type="range"
-            min="1"
-            max="5"
+            type="radio"
+            id="no-rate"
+            class="input-no-rate"
             name="review[rating]"
-            class="form-range">
-        </div>
-
+            value="0"
+            checked
+            aria-label="No rating."/>
+          <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+          <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+          <label for="first-rate1" title="Terrible">1 star</label>
+          <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+          <label for="first-rate2" title="Not good">2 stars</label>
+          <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+          <label for="first-rate3" title="Average">3 stars</label>
+          <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+          <label for="first-rate4" title="Very good">4 stars</label>
+          <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+          <label for="first-rate5" title="Amazing">5 stars</label>
+        </fieldset>
+      </div>
         <div class="mb-3">
           <label class="form-label">Comment</label>
           <textarea
@@ -103,9 +117,7 @@
               <div class="card-body">
                 <h6 class="card-title m-1 owner"><%= review.author.username %></h6>
                 <p class="card-text m-1"><%= review.comment %></p>
-                <small class="text-muted m-1">
-                  Rating: <%= review.rating %> ⭐
-                </small>
+                <p class="starability-result" data-rating="<%= review.rating %>"></p>
 
                 <form
                   method="POST"
