@@ -7,7 +7,8 @@ const Listing = require("../models/listing.js");
 const { isLoggedIn } = require("../middleware.js");
 const listingController=require("../controllers/listings.js");
 const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
+const {storage}=require("../cloudConfig.js");
+const upload = multer({storage})
 
 const validateListing=(req,res,next)=>{
     let {error}=listingSchema.validate(req.body);
