@@ -1,5 +1,5 @@
 if(process.env.NODE_ENV != "production"){require('dotenv').config()}
-console.log(process.env.SCREET)
+console.log("Cloud name:", process.env.CLOUD_NAME);
 
 const express=require("express");
 const app=express();
