@@ -9,7 +9,7 @@
                     
                     <h4 class="mb-4 fw-semibold text-center">Edit Listing</h4>
 
-                    <form method="post" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate>
+                    <form method="post" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate enctype="multipart/form-data">
 
                         <div class="mb-3">
                             <input 
@@ -33,14 +33,16 @@
                         <div class="mb-3">
                             <input 
                                 name="listing[image]" 
-                                value="<%= listing.image %>" 
+                                type="file"
                                 class="form-control rounded-3" 
                                 placeholder="Image URL"
-                                required>
+                                required
+                            />
                         </div>
 
                         <div class="row">
                             <div class="col-md-4 mb-3">
+                                <label for="image" class="form-label">upload image</label>
                                 <input 
                                     name="listing[price]" 
                                     value="<%= listing.price %>" 
