@@ -107,9 +107,9 @@
       <%}%>
       <hr class="my-4">
 
-      <h5>All Reviews</h5>
-
+      <% if(listing.reviews.length){%>
       <div class="row">
+        <h5>All Reviews</h5>
         <% for(let review of listing.reviews){ %>
 
           <div class="col-md-6 mb-3">
@@ -134,8 +134,31 @@
 
         <% } %>
       </div>
+      <%}%>
 
+      <div class="justify-content-center mt-5">
+        <h5>Where you'll be</h5>
+        <div id="map" style="height:400px; width:100%; border-radius:12px;"></div>
+      </div>
     </div>
   </div>
-
 </div>
+
+<script>
+  function initMap() {
+    const location = { lat: 16.7050, lng: 74.2433 }; // example Kolhapur
+  
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 13,
+      center: location
+    });
+  
+    new google.maps.Marker({
+      position: location,
+      map: map
+    });
+  }
+  </script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDR0e0YGeJ6GFX18dFIamFUiWsw2NcW4LY&callback=initMap">
+</script>
