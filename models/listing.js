@@ -1,3 +1,4 @@
+const { types } = require("joi");
 const mongoose = require("mongoose");
 
 const listingSchema = new mongoose.Schema({
@@ -33,7 +34,7 @@ const listingSchema = new mongoose.Schema({
   owner:{
     type:mongoose.Schema.Types.ObjectId,
     ref:"User",
-  }
+  },
 });
 
 const Listing = mongoose.model("Listing", listingSchema);
