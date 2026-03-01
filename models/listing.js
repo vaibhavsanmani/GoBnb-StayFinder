@@ -13,6 +13,17 @@ const listingSchema = new mongoose.Schema({
     filename: String,
     url: String,
   },
+  geometry: {
+    type: {
+      type: String,
+      enum: ["Point"],
+      default: "Point"
+    },
+    coordinates: {
+      type: [Number],
+      default: [0, 0]
+    }
+  },
   reviews:[
     {
       type:mongoose.Schema.Types.ObjectId,

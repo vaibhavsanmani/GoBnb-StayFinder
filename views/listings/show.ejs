@@ -144,21 +144,55 @@
   </div>
 </div>
 
+<!-- Map container -->
+<div id="map" style="height: 400px; width: 100%; border-radius: 12px;"></div>
+
 <script>
+  // 📍 Get coordinates from MongoDB
+  const coordinates = <%- JSON.stringify(listing.geometry?.coordinates || [0,0]) %>;
+
+  // MongoDB stores [lng, lat]
+  const lng = Number(coordinates[0]);
+  const lat = Number(coordinates[1]);
+
   function initMap() {
-    const location = { lat: 16.7050, lng: 74.2433 }; // example Kolhapur
-  
+
+    // ✅ fallback if invalid coordinates
+    if (!lat || !lng || isNaN(lat) || isNaN(lng)) {
+      console.error("Invalid coordinates:", coordinates);
+
+      // optional fallback location (India center)
+      const fallback = { lat: 20.5937, lng: 78.9629 };
+
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 5,
+        center: fallback
+      });
+
+      return;
+    }
+
+    // 📍 listing location
+    const listingLocation = {
+      lat: lat,
+      lng: lng
+    };
+
+    // 🗺 create map
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 13,
-      center: location
+      center: listingLocation
     });
-  
+
+    // 📌 marker
     new google.maps.Marker({
-      position: location,
-      map: map
+      position: listingLocation,
+      map: map,
+      title: "Listing Location"
     });
   }
-  </script>
+</script>
+  
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDR0e0YGeJ6GFX18dFIamFUiWsw2NcW4LY&callback=initMap">
-</script>
+  </script>
