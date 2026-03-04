@@ -16,6 +16,7 @@ const userRouter = require("./routes/user.js");
 const listings =require("./routes/listing.js");
 const reviewRoutes =require("./routes/review.js");
 const session=require("express-session");
+const MongoStore = require("connect-mongo").default;
 const flash=require("connect-flash");
 const passport=require("passport");
 const LocalStrategy = require("passport-local").Strategy;
@@ -29,17 +30,45 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
 
-main()
-    .then(()=>{console.log("connection successfull")
-    })
-    .catch(err => console.log(err));
 
-async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
+const dbUrl = process.env.ATLASDB_URL;
+
+async function startServer() {
+  try {
+    console.log("Connecting to:", dbUrl ? "URL exists" : "URL missing");
+
+    await mongoose.connect(dbUrl, {
+      serverSelectionTimeoutMS: 30000
+    });
+
+    console.log("✅ MongoDB Connected");
+    console.log("Ready state:", mongoose.connection.readyState);
+
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+      console.log(`🚀 Server listening on ${PORT}`);
+    });
+
+  } catch (err) {
+    console.log("❌ DB Connection Failed:");
+    console.log(err);
+  }
 }
 
+startServer();
+
+const store = MongoStore.create({
+    mongoUrl:dbUrl,
+    crypto:{
+        secret:process.env.SECRET,
+    },
+    touchAfter:24*3600,
+})
+console.log(MongoStore);
+
 const sessionOptions={
-    secret:"mysupersecretcode",
+    store,
+    secret: process.env.SECRET,
     resave:false,
     saveUninitialized:true,
     cookie:{
@@ -103,8 +132,4 @@ app.use((err,req,res,next)=>{
     let{statusCode,message}=err;
     res.render("error.ejs",{message});
     //res.status(statusCode).send(message);
-});
-
-app.listen(8080,()=>{
-    console.log("server is listening");
 });
