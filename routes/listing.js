@@ -32,6 +32,9 @@ router
 //New Route
 router.get("/new",isLoggedIn,listingController.renderNewForm);
 
+router.get("/about", (req, res) => {
+    res.render("listings/about");
+});
 router
     .route("/:id")
     .get(wrapAsync(listingController.showListing))
