@@ -38,7 +38,8 @@ async function startServer() {
     console.log("Connecting to:", dbUrl ? "URL exists" : "URL missing");
 
     await mongoose.connect(dbUrl, {
-      serverSelectionTimeoutMS: 30000
+      serverSelectionTimeoutMS: 30000,
+      family: 4
     });
 
     console.log("✅ MongoDB Connected");
