@@ -43,7 +43,28 @@ async function startServer() {
     });
 
     console.log("✅ MongoDB Connected");
-    console.log("Ready state:", mongoose.connection.readyState);
+
+    const store = MongoStore.create({
+      mongoUrl: dbUrl,
+      crypto: {
+        secret: process.env.SECRET,
+      },
+      touchAfter: 24 * 3600,
+    });
+
+    const sessionOptions = {
+      store,
+      secret: process.env.SECRET,
+      resave: false,
+      saveUninitialized: true,
+      cookie: {
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+      },
+    };
+
+    app.use(session(sessionOptions));
+    app.use(flash());
 
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
