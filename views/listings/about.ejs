@@ -7,95 +7,107 @@
 
 <style>
 
-/* HERO SECTION */
+/* HERO */
 .hero{
-    background: linear-gradient(135deg,#fe424d,#ff7a85);
-    color:white;
-    padding:80px 20px;
-    border-radius:15px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+height:60vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+background:linear-gradient(120deg,#ff4e50,#f9d423);
+border-radius:20px;
+margin-bottom:60px;
 }
 
-/* FEATURE CARDS */
-.feature-card{
-    transition: all 0.35s ease;
-    border-radius:12px;
+.hero h1{
+font-size:3rem;
+font-weight:700;
 }
 
-.feature-card:hover{
-    transform: translateY(-8px);
-    box-shadow:0 15px 30px rgba(0,0,0,0.2);
-}
-
-/* STATS */
-.stat-box{
-    background:white;
-    border-radius:12px;
-    padding:25px;
-    transition:0.3s;
-}
-
-.stat-box:hover{
-    transform:scale(1.05);
-    box-shadow:0 10px 25px rgba(0,0,0,0.15);
-}
-
-/* TEAM CARDS */
-.team-card{
-    border-radius:15px;
-    transition:0.35s;
-}
-
-.team-card:hover{
-    transform: translateY(-6px);
-    box-shadow:0 15px 35px rgba(0,0,0,0.2);
-}
-
-/* TEAM IMAGE ICON */
-.team-icon{
-    width:80px;
-    height:80px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:50%;
-    background:#f1f1f1;
-    margin:auto;
-}
-
-/* SOCIAL ICONS */
-.social-icons a{
-    font-size:20px;
-    margin:0 8px;
-    transition:0.3s;
-}
-
-.social-icons a:hover{
-    transform:scale(1.2);
-}
-
-.social-icons .github:hover{
-    color:#000;
-}
-
-.social-icons .linkedin:hover{
-    color:#0A66C2;
-}
-
-.social-icons .instagram:hover{
-    color:#E4405F;
+/* GLASS CARD */
+.glass{
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+border-radius:15px;
+padding:30px;
+box-shadow:0 8px 25px rgba(0,0,0,0.2);
 }
 
 /* SECTION TITLE */
 .section-title{
-    font-weight:700;
-    letter-spacing:1px;
+font-weight:700;
+text-align:center;
+margin-bottom:50px;
 }
 
-/* MOBILE RESPONSIVE */
+/* HOW IT WORKS */
+.step{
+text-align:center;
+padding:25px;
+}
+
+.step-icon{
+width:70px;
+height:70px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+margin:auto;
+background:#ff4e50;
+color:white;
+font-size:25px;
+margin-bottom:15px;
+}
+
+/* STATS */
+.stat{
+text-align:center;
+padding:30px;
+border-radius:15px;
+background:white;
+box-shadow:0 10px 20px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.stat:hover{
+transform:translateY(-8px);
+}
+
+/* TEAM */
+.team{
+text-align:center;
+padding:30px;
+border-radius:15px;
+background:white;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.team:hover{
+transform:scale(1.05);
+}
+
+.team img{
+width:90px;
+height:90px;
+border-radius:50%;
+margin-bottom:15px;
+}
+
+/* TESTIMONIAL */
+.testimonial{
+padding:30px;
+border-radius:15px;
+background:#fff;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* MOBILE */
 @media(max-width:768px){
-.hero{
-    padding:60px 15px;
+.hero h1{
+font-size:2rem;
 }
 }
 
@@ -108,210 +120,151 @@
 <div class="container mt-5">
 
 <!-- HERO -->
-<div class="hero text-center mb-5">
-<h1 class="fw-bold display-5">About Gobnb</h1>
-<p class="lead">Helping you discover the perfect place to stay.</p>
+<div class="hero">
+<div class="glass">
+<h1>Welcome to Gobnb</h1>
+<p class="lead">Discover amazing places to stay around the world</p>
+</div>
 </div>
 
-<!-- ABOUT TEXT -->
+<!-- ABOUT -->
 <div class="row justify-content-center mb-5">
 <div class="col-md-8 text-center">
+
+<h2 class="section-title">Our Mission</h2>
+
 <p class="text-muted fs-5">
-<strong>Gobnb</strong> is a modern platform designed to help users discover
-comfortable and affordable accommodations effortlessly.
+Gobnb helps travelers discover **affordable and trusted stays**.
+We combine modern technology with verified listings to ensure
+that every user finds the perfect accommodation with ease.
 </p>
 
-<p class="text-muted">
-We simplify the process of finding stays by offering verified listings,
-trusted reviews, and detailed property information so users can make
-confident travel decisions.
-</p>
 </div>
 </div>
 
-<!-- FEATURES -->
-<h2 class="text-center section-title mb-4">Why Choose Gobnb</h2>
+<!-- HOW IT WORKS -->
 
-<div class="row text-center mb-5">
+<h2 class="section-title">How Gobnb Works</h2>
 
-<div class="col-md-4 mb-4">
-<div class="card feature-card border-0 shadow-sm p-4">
-<i class="fa-solid fa-house fa-2x text-primary mb-3"></i>
-<h5>Verified Listings</h5>
-<p class="text-muted">All properties are verified for trust and quality.</p>
-</div>
-</div>
+<div class="row mb-5">
 
-<div class="col-md-4 mb-4">
-<div class="card feature-card border-0 shadow-sm p-4">
-<i class="fa-solid fa-location-dot fa-2x text-danger mb-3"></i>
-<h5>Smart Location</h5>
-<p class="text-muted">Find stays with accurate and smart location filters.</p>
+<div class="col-md-4 step">
+<div class="step-icon">
+<i class="fa-solid fa-search"></i>
 </div>
+<h5>Search</h5>
+<p class="text-muted">Explore thousands of listings easily.</p>
 </div>
 
-<div class="col-md-4 mb-4">
-<div class="card feature-card border-0 shadow-sm p-4">
-<i class="fa-solid fa-star fa-2x text-warning mb-3"></i>
-<h5>Trusted Reviews</h5>
-<p class="text-muted">Real feedback from real users.</p>
+<div class="col-md-4 step">
+<div class="step-icon">
+<i class="fa-solid fa-star"></i>
 </div>
+<h5>Compare</h5>
+<p class="text-muted">Check ratings, reviews and amenities.</p>
+</div>
+
+<div class="col-md-4 step">
+<div class="step-icon">
+<i class="fa-solid fa-house"></i>
+</div>
+<h5>Book</h5>
+<p class="text-muted">Reserve your perfect stay instantly.</p>
 </div>
 
 </div>
 
 <!-- STATS -->
+
+<h2 class="section-title">Platform Stats</h2>
+
 <div class="row text-center mb-5">
 
 <div class="col-md-4 mb-3">
-<div class="stat-box shadow-sm">
-<i class="fa-solid fa-building fa-2x text-primary mb-2"></i>
-<h2 class="text-primary">500+</h2>
+<div class="stat">
+<h2 class="text-danger">500+</h2>
 <p class="text-muted">Listings</p>
 </div>
 </div>
 
 <div class="col-md-4 mb-3">
-<div class="stat-box shadow-sm">
-<i class="fa-solid fa-users fa-2x text-success mb-2"></i>
+<div class="stat">
 <h2 class="text-success">1000+</h2>
 <p class="text-muted">Happy Users</p>
 </div>
 </div>
 
 <div class="col-md-4 mb-3">
-<div class="stat-box shadow-sm">
-<i class="fa-solid fa-city fa-2x text-danger mb-2"></i>
-<h2 class="text-danger">50+</h2>
+<div class="stat">
+<h2 class="text-primary">50+</h2>
 <p class="text-muted">Cities</p>
 </div>
 </div>
 
 </div>
 
-</div>
+<!-- TEAM -->
 
-<!-- TEAM SECTION -->
+<h2 class="section-title">Meet Our Team</h2>
 
-<div class="container mb-5">
+<div class="row justify-content-center mb-5">
 
-<h2 class="text-center section-title mb-5">Our Team</h2>
-
-<div class="row justify-content-center text-center">
-
-<!-- TEAM MEMBER -->
 <div class="col-md-4 mb-4">
-<div class="card team-card border-0 shadow-sm p-4">
-
-<div class="team-icon mb-3">
-<i class="fa-solid fa-user fa-xl text-primary"></i>
-</div>
-
-<h5 class="fw-bold">Vaibhav Sanmani</h5>
+<div class="team">
+<img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+<h5>Vaibhav Sanmani</h5>
 <p class="text-muted">Full Stack Developer</p>
-
-<div class="social-icons">
-<a href="#" class="github"><i class="fa-brands fa-github"></i></a>
-<a href="#" class="linkedin"><i class="fa-brands fa-linkedin"></i></a>
-<a href="#" class="instagram"><i class="fa-brands fa-instagram"></i></a>
-</div>
-
 </div>
 </div>
 
 <div class="col-md-4 mb-4">
-<div class="card team-card border-0 shadow-sm p-4">
-
-<div class="team-icon mb-3">
-<i class="fa-solid fa-user fa-xl text-success"></i>
-</div>
-
-<h5 class="fw-bold">Team Member</h5>
+<div class="team">
+<img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+<h5>Team Member</h5>
 <p class="text-muted">Backend Developer</p>
-
-<div class="social-icons">
-<a href="#" class="github"><i class="fa-brands fa-github"></i></a>
-<a href="#" class="linkedin"><i class="fa-brands fa-linkedin"></i></a>
-<a href="#" class="instagram"><i class="fa-brands fa-instagram"></i></a>
-</div>
-
 </div>
 </div>
 
 <div class="col-md-4 mb-4">
-<div class="card team-card border-0 shadow-sm p-4">
-
-<div class="team-icon mb-3">
-<i class="fa-solid fa-user fa-xl text-warning"></i>
-</div>
-
-<h5 class="fw-bold">Team Member</h5>
+<div class="team">
+<img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+<h5>Team Member</h5>
 <p class="text-muted">UI/UX Designer</p>
-
-<div class="social-icons">
-<a href="#" class="github"><i class="fa-brands fa-github"></i></a>
-<a href="#" class="linkedin"><i class="fa-brands fa-linkedin"></i></a>
-<a href="#" class="instagram"><i class="fa-brands fa-instagram"></i></a>
-</div>
-
 </div>
 </div>
 
 </div>
 
-</div>
 <!-- TESTIMONIALS -->
 
-<div class="container mb-5">
+<h2 class="section-title">User Experiences</h2>
 
-    <h2 class="text-center section-title mb-5">What Users Say</h2>
-    
-    <div class="row text-center">
-    
-    <div class="col-md-4 mb-4">
-    <div class="card border-0 shadow-sm p-4">
-    
-    <p class="text-muted">
-    "Gobnb helped me find the perfect stay during my vacation. 
-    The booking process was very simple."
-    </p>
-    
-    <h6 class="fw-bold mt-3">Rahul Sharma</h6>
-    ⭐ ⭐ ⭐ ⭐ ⭐
-    
-    </div>
-    </div>
-    
-    <div class="col-md-4 mb-4">
-    <div class="card border-0 shadow-sm p-4">
-    
-    <p class="text-muted">
-    "Very clean listings and trusted reviews. 
-    Highly recommended platform."
-    </p>
-    
-    <h6 class="fw-bold mt-3">Priya Patil</h6>
-    ⭐ ⭐ ⭐ ⭐ ⭐
-    
-    </div>
-    </div>
-    
-    <div class="col-md-4 mb-4">
-    <div class="card border-0 shadow-sm p-4">
-    
-    <p class="text-muted">
-    "Amazing experience! I found affordable stays easily."
-    </p>
-    
-    <h6 class="fw-bold mt-3">Amit Kulkarni</h6>
-    ⭐ ⭐ ⭐ ⭐ ⭐
-    
-    </div>
-    </div>
-    
-    </div>
-    
-    </div>
+<div class="row text-center mb-5">
+
+<div class="col-md-4 mb-4">
+<div class="testimonial">
+<p>"Gobnb helped me find the perfect stay easily."</p>
+<strong>Rahul Sharma</strong>
+</div>
+</div>
+
+<div class="col-md-4 mb-4">
+<div class="testimonial">
+<p>"Clean listings and trusted reviews. Amazing!"</p>
+<strong>Priya Patil</strong>
+</div>
+</div>
+
+<div class="col-md-4 mb-4">
+<div class="testimonial">
+<p>"Affordable stays and smooth experience."</p>
+<strong>Amit Kulkarni</strong>
+</div>
+</div>
+
+</div>
+
+</div>
 
 </body>
 </html>
