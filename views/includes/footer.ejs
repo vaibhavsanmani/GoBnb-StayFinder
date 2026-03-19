@@ -1,15 +1,180 @@
-<footer>
-    <div class="f-info">
-        <div class="f-info-scocials">
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-square-linkedin"></i>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<title>Premium Footer</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+/* FOOTER */
+.footer{
+    background: linear-gradient(135deg,#0f172a,#1e293b);
+    color:white;
+    padding:60px 40px 20px;
+    border-radius:25px 25px 0 0;
+    margin-top:60px;
+}
+
+/* CONTAINER */
+.footer-container{
+    display:grid;
+    grid-template-columns:1.5fr 2fr 1fr;
+    gap:40px;
+}
+
+/* LEFT */
+.footer-left h2{
+    font-size:28px;
+    color:#ff385c;
+    margin-bottom:10px;
+}
+
+.footer-left p{
+    color:#cbd5e1;
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* LINKS */
+.footer-links{
+    display:flex;
+    justify-content:space-between;
+}
+
+.footer-links h4{
+    margin-bottom:15px;
+    font-size:16px;
+}
+
+.footer-links a{
+    display:block;
+    color:#cbd5e1;
+    margin-bottom:8px;
+    text-decoration:none;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.footer-links a:hover{
+    color:#ff385c;
+    transform:translateX(5px);
+}
+
+/* SOCIAL */
+.footer-socials h4{
+    margin-bottom:15px;
+}
+
+.icons{
+    display:flex;
+    gap:15px;
+}
+
+.icons i{
+    font-size:20px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.icons i:hover{
+    color:#ff385c;
+    transform:scale(1.2);
+}
+
+/* BOTTOM */
+.footer-bottom{
+    text-align:center;
+    border-top:1px solid #334155;
+    margin-top:40px;
+    padding-top:20px;
+    font-size:13px;
+    color:#94a3b8;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .footer-container{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .footer-links{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .icons{
+        justify-content:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<footer class="footer">
+    <div class="footer-container">
+
+        <!-- LEFT -->
+        <div class="footer-left">
+            <h2>GoBnb</h2>
+            <p>Find your perfect stay anywhere in the world with comfort and trust.</p>
         </div>
-    <div> &copy; GoBnb Private Limited</div>
-    <div class="f-info-links">
-         <a href="/privacy">Privacy</a>
-         <a href="/trems">Terms</a>
-         <a href="/issues">issue</a>
+
+        <!-- CENTER -->
+        <div class="footer-links">
+            <div>
+                <h4>Company</h4>
+                <a href="#">About</a>
+                <a href="#">Careers</a>
+                <a href="#">Press</a>
+            </div>
+
+            <div>
+                <h4>Support</h4>
+                <a href="/issues">Help Center</a>
+                <a href="#">Safety</a>
+                <a href="#">Contact</a>
+            </div>
+
+            <div>
+                <h4>Legal</h4>
+                <a href="/privacy">Privacy</a>
+                <a href="/terms">Terms</a>
+            </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="footer-socials">
+            <h4>Follow us</h4>
+            <div class="icons">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-linkedin"></i>
+            </div>
+        </div>
+
     </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+        <p>© 2026 GoBnb Private Limited. All rights reserved.</p>
     </div>
 </footer>
+
+</body>
+</html>
