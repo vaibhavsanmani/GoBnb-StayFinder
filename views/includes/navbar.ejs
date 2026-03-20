@@ -27,7 +27,6 @@
   font-weight: 700;
   color: #fe424d;
 }
-
 /* SEARCH BOX */
 .search-box {
   display: flex;
@@ -178,43 +177,21 @@
     <!-- RIGHT -->
     <div class="nav-right ms-auto">
 
-      <a href="/listings/new" class="host-btn text-dark text-decoration-none">
-        Gobnb your home
-      </a>
-
-      <i class="fa-solid fa-globe"></i>
-
       <!-- PROFILE -->
-      <div class="dropdown">
-        <button class="profile-btn" data-bs-toggle="dropdown">
-          <i class="fa-solid fa-bars"></i>
+     <div class="nav-right ms-auto">
 
-          <% if(currUser){ %>
-            <div class="avatar"></div>
-          <% } else { %>
-            <i class="fa-solid fa-user"></i>
-          <% } %>
-        </button>
+  <a href="/listings/new" class="host-btn text-dark text-decoration-none px-3 ">
+    Gobnb your home <i class="fa-brands fa-airbnb"></i>
+  </a>
+  <!-- SIMPLE AUTH BUTTONS -->
+  <% if(!currUser){ %>
+    <a href="/login" class="btn btn-outline-dark rounded-pill px-3">Login</a>
+    <a href="/signup" class="btn btn-danger rounded-pill px-3">Signup</a>
+  <% } else { %>
+    <a href="/logout" class="btn btn-danger rounded-pill px-2.5">Logout</a>
+  <% } %>
 
-        <ul class="dropdown-menu dropdown-menu-end">
-
-          <% if(!currUser){ %>
-            <li><a class="dropdown-item fw-bold" href="/login">Log in</a></li>
-            <li><a class="dropdown-item" href="/signup">Sign up</a></li>
-            <li><hr class="dropdown-divider"></li>
-          <% } %>
-
-          <li><a class="dropdown-item" href="#">Help Center</a></li>
-
-          <% if(currUser){ %>
-            <li><a class="dropdown-item" href="#">My Profile</a></li>
-            <li><a class="dropdown-item" href="#">My Bookings</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item text-danger" href="/logout">Log out</a></li>
-          <% } %>
-
-        </ul>
-      </div>
+</div>
 
     </div>
 
