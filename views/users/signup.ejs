@@ -1,15 +1,66 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="row mt-3">
-    <h1 class="col-6 offset-3">Signup on GoBnb</h1>
+<style>
+/* Background */
+body {
+    background-color: #f7f7f7;
+}
 
-    <div class="col-6 offset-3">
+/* Centering */
+.container-center {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Card */
+.auth-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Title */
+.auth-title {
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Inputs */
+.form-control {
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* Button */
+.btn-dark {
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.btn-dark:hover {
+    transform: scale(1.03);
+}
+</style>
+
+<div class="container-center">
+    <div class="auth-container">
+
+        <h2 class="auth-title">Signup on GoBnb</h2>
+
         <form action="/signup" method="POST" class="needs-validation" novalidate>
 
             <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
+                <label class="form-label">Username</label>
                 <input 
-                    id="username"
                     name="username"
                     type="text"
                     class="form-control"
@@ -18,9 +69,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
+                <label class="form-label">Email</label>
                 <input 
-                    id="email"
                     name="email"
                     type="email"
                     class="form-control"
@@ -29,9 +79,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
+                <label class="form-label">Password</label>
                 <input 
-                    id="password"
                     name="password"
                     type="password"
                     class="form-control"
@@ -39,7 +88,27 @@
                 <div class="invalid-feedback">Password is required</div>
             </div>
 
-            <button class="btn btn-dark mb-2">Signup</button>
+            <button class="btn btn-dark">Signup</button>
+
         </form>
+
     </div>
 </div>
+
+<!-- Validation Script -->
+<script>
+(() => {
+    'use strict';
+    const forms = document.querySelectorAll('.needs-validation');
+
+    Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    });
+})();
+</script>
