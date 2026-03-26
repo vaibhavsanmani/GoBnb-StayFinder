@@ -5,110 +5,104 @@
 <title>About | Gobnb</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 
+/* GLOBAL */
+body{
+font-family: 'Poppins', sans-serif;
+background:#f8f9fa;
+}
+
 /* HERO */
 .hero{
-height:70vh;
+height:75vh;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
 color:white;
-background:linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
-border-radius:20px;
-margin-bottom:60px;
-transition:0.5s;
+background:linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.2)),
+url('https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=1470&q=80')
+no-repeat center/cover;
+border-radius:25px;
+margin-bottom:70px;
+transition:0.4s ease;
 }
 
 .hero:hover{
-transform:scale(1.02);
+transform:scale(1.01);
 }
 
 .hero h1{
-font-size:3rem;
+font-size:3.2rem;
 font-weight:700;
-margin-bottom:15px;
 }
 
 .hero p{
 font-size:1.2rem;
-margin-bottom:20px;
+opacity:0.9;
 }
 
 .hero .btn{
-padding:12px 25px;
-border:none;
+padding:12px 30px;
 border-radius:50px;
-background:#ff4e50;
+background:linear-gradient(45deg,#ff4e50,#f9d423);
 color:white;
 font-weight:600;
-cursor:pointer;
+border:none;
 transition:0.3s;
 }
 
 .hero .btn:hover{
-background:#f9d423;
-color:#333;
+transform:translateY(-3px);
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
 }
 
-/* GLASS CARD */
+/* GLASS */
 .glass{
-background:rgba(255,255,255,0.2);
-backdrop-filter:blur(15px);
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(20px);
 border-radius:20px;
 padding:40px;
-box-shadow:0 12px 30px rgba(0,0,0,0.25);
-transition:0.3s;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 
-.glass:hover{
-transform:translateY(-5px);
-}
-
-/* SECTION TITLE */
+/* TITLES */
 .section-title{
 font-weight:700;
 text-align:center;
 margin-bottom:50px;
-font-size:2rem;
-color:#333;
+font-size:2.2rem;
 }
 
-/* HOW IT WORKS */
+/* STEPS */
 .step{
 text-align:center;
 padding:25px;
+border-radius:15px;
 transition:0.3s;
-cursor:pointer;
 }
 
 .step:hover{
-transform:scale(1.05);
-box-shadow:0 10px 20px rgba(0,0,0,0.15);
+background:white;
+transform:translateY(-8px);
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
 }
 
 .step-icon{
-width:80px;
-height:80px;
+width:75px;
+height:75px;
+border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
-border-radius:50%;
 margin:auto;
-background:#ff4e50;
+background:linear-gradient(45deg,#ff4e50,#f9d423);
 color:white;
-font-size:28px;
+font-size:26px;
 margin-bottom:15px;
-transition:0.3s;
-}
-
-.step-icon:hover{
-background:#f9d423;
-color:#333;
 }
 
 /* STATS */
@@ -117,18 +111,12 @@ text-align:center;
 padding:30px;
 border-radius:15px;
 background:white;
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
 transition:0.3s;
-}
-
-.stat i{
-font-size:2rem;
-margin-bottom:10px;
-color:#ff4e50;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
 }
 
 .stat:hover{
-transform:translateY(-8px);
+transform:translateY(-10px);
 }
 
 /* TEAM */
@@ -137,12 +125,12 @@ text-align:center;
 padding:30px;
 border-radius:15px;
 background:white;
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
 transition:0.3s;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
 }
 
 .team:hover{
-transform:scale(1.05);
+transform:translateY(-10px);
 }
 
 .team img{
@@ -150,7 +138,6 @@ width:120px;
 height:120px;
 border-radius:50%;
 margin-bottom:15px;
-object-fit:cover;
 transition:0.3s;
 }
 
@@ -158,56 +145,39 @@ transition:0.3s;
 transform:scale(1.1);
 }
 
-.team .social-icons{
-margin-top:10px;
-}
-
-.team .social-icons a{
-color:#333;
+.social-icons a{
 margin:0 8px;
+color:#555;
 font-size:18px;
-transition:0.3s;
 }
 
-.team .social-icons a:hover{
+.social-icons a:hover{
 color:#ff4e50;
 }
 
 /* TESTIMONIAL */
 .testimonial{
-padding:30px;
+padding:25px;
 border-radius:15px;
-background:#fff;
-box-shadow:0 8px 25px rgba(0,0,0,0.15);
+background:white;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
 transition:0.3s;
 }
 
 .testimonial:hover{
-transform:translateY(-5px);
+transform:translateY(-8px);
 }
 
-.testimonial p{
-font-style:italic;
-color:#555;
+/* ANIMATION */
+.fade-in{
+opacity:0;
+transform:translateY(30px);
+transition:0.8s;
 }
 
-/* MOBILE */
-@media(max-width:768px){
-.hero h1{
-font-size:2rem;
-}
-.hero p{
-font-size:1rem;
-}
-.step-icon{
-width:60px;
-height:60px;
-font-size:22px;
-}
-.team img{
-width:100px;
-height:100px;
-}
+.fade-in.show{
+opacity:1;
+transform:translateY(0);
 }
 
 </style>
@@ -219,29 +189,28 @@ height:100px;
 <div class="container mt-5">
 
 <!-- HERO -->
-<div class="hero">
+<div class="hero fade-in">
 <div class="glass">
 <h1>Welcome to Gobnb</h1>
-<p class="lead">Discover amazing places to stay around the world</p>
+<p>Discover amazing places to stay around the world</p>
 <button class="btn">Explore Stays</button>
 </div>
 </div>
 
 <!-- ABOUT -->
-<div class="row justify-content-center mb-5">
+<div class="row justify-content-center mb-5 fade-in">
 <div class="col-md-8 text-center">
 <h2 class="section-title">Our Mission</h2>
 <p class="text-muted fs-5">
 Gobnb helps travelers discover <strong>affordable and trusted stays</strong>.
-We combine modern technology with verified listings to ensure
-that every user finds the perfect accommodation with ease.
+We make booking simple, secure, and fast.
 </p>
 </div>
 </div>
 
 <!-- HOW IT WORKS -->
-<h2 class="section-title">How Gobnb Works</h2>
-<div class="row mb-5">
+<h2 class="section-title fade-in">How Gobnb Works</h2>
+<div class="row mb-5 fade-in">
 <div class="col-md-4 step">
 <div class="step-icon"><i class="fa-solid fa-search"></i></div>
 <h5>Search</h5>
@@ -251,108 +220,55 @@ that every user finds the perfect accommodation with ease.
 <div class="col-md-4 step">
 <div class="step-icon"><i class="fa-solid fa-star"></i></div>
 <h5>Compare</h5>
-<p class="text-muted">Check ratings, reviews and amenities.</p>
+<p class="text-muted">Check ratings and reviews.</p>
 </div>
 
 <div class="col-md-4 step">
 <div class="step-icon"><i class="fa-solid fa-house"></i></div>
 <h5>Book</h5>
-<p class="text-muted">Reserve your perfect stay instantly.</p>
+<p class="text-muted">Reserve instantly.</p>
 </div>
 </div>
 
 <!-- STATS -->
-<h2 class="section-title">Platform Stats</h2>
-<div class="row text-center mb-5">
+<h2 class="section-title fade-in">Platform Stats</h2>
+<div class="row mb-5 fade-in">
 <div class="col-md-4 mb-3">
 <div class="stat">
-<i class="fa-solid fa-building"></i>
 <h2 class="text-danger">500+</h2>
-<p class="text-muted">Listings</p>
+<p>Listings</p>
 </div>
 </div>
 
 <div class="col-md-4 mb-3">
 <div class="stat">
-<i class="fa-solid fa-users"></i>
 <h2 class="text-success">1000+</h2>
-<p class="text-muted">Happy Users</p>
+<p>Happy Users</p>
 </div>
 </div>
 
 <div class="col-md-4 mb-3">
 <div class="stat">
-<i class="fa-solid fa-city"></i>
 <h2 class="text-primary">50+</h2>
-<p class="text-muted">Cities</p>
-</div>
-</div>
-</div>
-
-<!-- TEAM -->
-<h2 class="section-title">Meet Our Team</h2>
-<div class="row justify-content-center mb-5">
-<div class="col-md-4 mb-4">
-<div class="team">
-<img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
-<h5>Vaibhav Sanmani</h5>
-<p class="text-muted">Full Stack Developer</p>
-<div class="social-icons">
-<a href="#"><i class="fab fa-linkedin"></i></a>
-<a href="#"><i class="fab fa-github"></i></a>
-</div>
-</div>
-</div>
-
-<div class="col-md-4 mb-4">
-<div class="team">
-<img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
-<h5>Team Member</h5>
-<p class="text-muted">Backend Developer</p>
-<div class="social-icons">
-<a href="#"><i class="fab fa-linkedin"></i></a>
-<a href="#"><i class="fab fa-github"></i></a>
-</div>
-</div>
-</div>
-
-<div class="col-md-4 mb-4">
-<div class="team">
-<img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
-<h5>Team Member</h5>
-<p class="text-muted">UI/UX Designer</p>
-<div class="social-icons">
-<a href="#"><i class="fab fa-linkedin"></i></a>
-<a href="#"><i class="fab fa-github"></i></a>
-</div>
-</div>
-</div>
-</div>
-
-<!-- TESTIMONIALS -->
-<h2 class="section-title">User Experiences</h2>
-<div class="row text-center mb-5">
-<div class="col-md-4 mb-4">
-<div class="testimonial">
-<p>"Gobnb helped me find the perfect stay easily."</p>
-<strong>Rahul Sharma</strong>
-</div>
-</div>
-
-<div class="col-md-4 mb-4">
-<div class="testimonial">
-<p>"Clean listings and trusted reviews. Amazing!"</p>
-<strong>Priya Patil</strong>
-</div>
-</div>
-
-<div class="col-md-4 mb-4">
-<div class="testimonial">
-<p>"Affordable stays and smooth experience."</p>
-<strong>Amit Kulkarni</strong>
+<p>Cities</p>
 </div>
 </div>
 </div>
 
 </div>
+
+<!-- SCROLL ANIMATION SCRIPT -->
+<script>
+const elements = document.querySelectorAll('.fade-in');
+
+window.addEventListener('scroll', () => {
+elements.forEach(el => {
+const rect = el.getBoundingClientRect();
+if(rect.top < window.innerHeight - 100){
+el.classList.add('show');
+}
+});
+});
+</script>
+
 </body>
