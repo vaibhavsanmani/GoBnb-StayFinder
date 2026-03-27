@@ -5,6 +5,10 @@
 <title>About | Gobnb</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<!-- FONT AWESOME -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
@@ -12,88 +16,90 @@
 /* GLOBAL */
 body{
 font-family: 'Poppins', sans-serif;
-background:#f8f9fa;
+background:#f5f7fb;
+margin:0;
 }
 
 /* HERO */
 .hero{
-height:75vh;
+height:80vh;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
 color:white;
-background:linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.2)),
+background:
+linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3)),
 url('https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=1470&q=80')
 no-repeat center/cover;
 border-radius:25px;
-margin-bottom:70px;
-transition:0.4s ease;
-}
-
-.hero:hover{
-transform:scale(1.01);
+margin-bottom:80px;
+overflow:hidden;
 }
 
 .hero h1{
-font-size:3.2rem;
+font-size:3.5rem;
 font-weight:700;
+letter-spacing:1px;
 }
 
 .hero p{
 font-size:1.2rem;
-opacity:0.9;
+opacity:0.85;
+margin-bottom:25px;
 }
 
+/* BUTTON */
 .hero .btn{
-padding:12px 30px;
+padding:14px 35px;
 border-radius:50px;
 background:linear-gradient(45deg,#ff4e50,#f9d423);
 color:white;
 font-weight:600;
 border:none;
-transition:0.3s;
+transition:0.3s ease;
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
 }
 
 .hero .btn:hover{
-transform:translateY(-3px);
-box-shadow:0 8px 20px rgba(0,0,0,0.3);
+transform:translateY(-5px) scale(1.05);
+box-shadow:0 12px 25px rgba(0,0,0,0.4);
 }
 
 /* GLASS */
 .glass{
-background:rgba(255,255,255,0.15);
-backdrop-filter:blur(20px);
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(25px);
 border-radius:20px;
-padding:40px;
-box-shadow:0 10px 30px rgba(0,0,0,0.3);
+padding:50px;
+box-shadow:0 10px 40px rgba(0,0,0,0.4);
 }
 
 /* TITLES */
 .section-title{
 font-weight:700;
 text-align:center;
-margin-bottom:50px;
-font-size:2.2rem;
+margin-bottom:60px;
+font-size:2.4rem;
 }
 
 /* STEPS */
 .step{
 text-align:center;
-padding:25px;
-border-radius:15px;
+padding:30px;
+border-radius:20px;
 transition:0.3s;
 }
 
 .step:hover{
 background:white;
-transform:translateY(-8px);
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
+transform:translateY(-10px);
+box-shadow:0 15px 30px rgba(0,0,0,0.15);
 }
 
 .step-icon{
-width:75px;
-height:75px;
+width:80px;
+height:80px;
 border-radius:50%;
 display:flex;
 align-items:center;
@@ -101,78 +107,29 @@ justify-content:center;
 margin:auto;
 background:linear-gradient(45deg,#ff4e50,#f9d423);
 color:white;
-font-size:26px;
+font-size:28px;
 margin-bottom:15px;
 }
 
 /* STATS */
 .stat{
 text-align:center;
-padding:30px;
-border-radius:15px;
+padding:35px;
+border-radius:20px;
 background:white;
 transition:0.3s;
-box-shadow:0 8px 20px rgba(0,0,0,0.1);
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
 
 .stat:hover{
-transform:translateY(-10px);
-}
-
-/* TEAM */
-.team{
-text-align:center;
-padding:30px;
-border-radius:15px;
-background:white;
-transition:0.3s;
-box-shadow:0 8px 20px rgba(0,0,0,0.1);
-}
-
-.team:hover{
-transform:translateY(-10px);
-}
-
-.team img{
-width:120px;
-height:120px;
-border-radius:50%;
-margin-bottom:15px;
-transition:0.3s;
-}
-
-.team:hover img{
-transform:scale(1.1);
-}
-
-.social-icons a{
-margin:0 8px;
-color:#555;
-font-size:18px;
-}
-
-.social-icons a:hover{
-color:#ff4e50;
-}
-
-/* TESTIMONIAL */
-.testimonial{
-padding:25px;
-border-radius:15px;
-background:white;
-box-shadow:0 8px 20px rgba(0,0,0,0.1);
-transition:0.3s;
-}
-
-.testimonial:hover{
-transform:translateY(-8px);
+transform:translateY(-10px) scale(1.03);
 }
 
 /* ANIMATION */
 .fade-in{
 opacity:0;
-transform:translateY(30px);
-transition:0.8s;
+transform:translateY(40px);
+transition:all 0.8s ease;
 }
 
 .fade-in.show{
@@ -181,7 +138,6 @@ transform:translateY(0);
 }
 
 </style>
-
 </head>
 
 <body>
@@ -257,18 +213,19 @@ We make booking simple, secure, and fast.
 
 </div>
 
-<!-- SCROLL ANIMATION SCRIPT -->
+<!-- SMOOTH SCROLL ANIMATION -->
 <script>
 const elements = document.querySelectorAll('.fade-in');
 
-window.addEventListener('scroll', () => {
-elements.forEach(el => {
-const rect = el.getBoundingClientRect();
-if(rect.top < window.innerHeight - 100){
-el.classList.add('show');
+const observer = new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('show');
 }
 });
-});
+},{threshold:0.2});
+
+elements.forEach(el=>observer.observe(el));
 </script>
 
 </body>
