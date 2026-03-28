@@ -13,11 +13,37 @@
 
 <style>
 
+/* DARK MODE */
+body.dark{
+background:#121212;
+color:#eee;
+}
+
+body.dark .stat,
+body.dark .step{
+background:#1e1e1e;
+color:#eee;
+}
+
 /* GLOBAL */
 body{
-font-family: 'Poppins', sans-serif;
+font-family:'Poppins',sans-serif;
 background:#f5f7fb;
-margin:0;
+transition:0.3s;
+}
+
+/* TOGGLE BUTTON */
+.toggle-btn{
+position:fixed;
+top:20px;
+right:20px;
+background:#111;
+color:#fff;
+border:none;
+padding:10px 15px;
+border-radius:20px;
+cursor:pointer;
+z-index:1000;
 }
 
 /* HERO */
@@ -34,53 +60,31 @@ url('https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=c
 no-repeat center/cover;
 border-radius:25px;
 margin-bottom:80px;
-overflow:hidden;
 }
 
 .hero h1{
 font-size:3.5rem;
-font-weight:700;
-letter-spacing:1px;
 }
 
-.hero p{
-font-size:1.2rem;
-opacity:0.85;
-margin-bottom:25px;
-}
-
-/* BUTTON */
 .hero .btn{
 padding:14px 35px;
 border-radius:50px;
 background:linear-gradient(45deg,#ff4e50,#f9d423);
-color:white;
-font-weight:600;
 border:none;
-transition:0.3s ease;
-box-shadow:0 5px 15px rgba(0,0,0,0.3);
+color:white;
+cursor:pointer;
+transition:0.3s;
 }
 
 .hero .btn:hover{
-transform:translateY(-5px) scale(1.05);
-box-shadow:0 12px 25px rgba(0,0,0,0.4);
+transform:scale(1.05);
 }
 
-/* GLASS */
-.glass{
-background:rgba(255,255,255,0.1);
-backdrop-filter:blur(25px);
-border-radius:20px;
-padding:50px;
-box-shadow:0 10px 40px rgba(0,0,0,0.4);
-}
-
-/* TITLES */
+/* SECTIONS */
 .section-title{
-font-weight:700;
 text-align:center;
+font-weight:700;
 margin-bottom:60px;
-font-size:2.4rem;
 }
 
 /* STEPS */
@@ -94,20 +98,19 @@ transition:0.3s;
 .step:hover{
 background:white;
 transform:translateY(-10px);
-box-shadow:0 15px 30px rgba(0,0,0,0.15);
 }
 
+/* ICON */
 .step-icon{
 width:80px;
 height:80px;
-border-radius:50%;
+background:linear-gradient(45deg,#ff4e50,#f9d423);
+color:white;
 display:flex;
 align-items:center;
 justify-content:center;
+border-radius:50%;
 margin:auto;
-background:linear-gradient(45deg,#ff4e50,#f9d423);
-color:white;
-font-size:28px;
 margin-bottom:15px;
 }
 
@@ -117,19 +120,17 @@ text-align:center;
 padding:35px;
 border-radius:20px;
 background:white;
-transition:0.3s;
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
 
-.stat:hover{
-transform:translateY(-10px) scale(1.03);
+.stat h2{
+font-weight:700;
 }
 
 /* ANIMATION */
 .fade-in{
 opacity:0;
 transform:translateY(40px);
-transition:all 0.8s ease;
+transition:0.8s;
 }
 
 .fade-in.show{
@@ -142,14 +143,17 @@ transform:translateY(0);
 
 <body>
 
+<!-- DARK MODE BUTTON -->
+<button class="toggle-btn" onclick="toggleDark()">🌙</button>
+
 <div class="container mt-5">
 
 <!-- HERO -->
 <div class="hero fade-in">
-<div class="glass">
+<div>
 <h1>Welcome to Gobnb</h1>
 <p>Discover amazing places to stay around the world</p>
-<button class="btn">Explore Stays</button>
+<button class="btn" onclick="scrollToStats()">Explore</button>
 </div>
 </div>
 
@@ -159,53 +163,49 @@ transform:translateY(0);
 <h2 class="section-title">Our Mission</h2>
 <p class="text-muted fs-5">
 Gobnb helps travelers discover <strong>affordable and trusted stays</strong>.
-We make booking simple, secure, and fast.
 </p>
 </div>
 </div>
 
-<!-- HOW IT WORKS -->
-<h2 class="section-title fade-in">How Gobnb Works</h2>
+<!-- STEPS -->
+<h2 class="section-title fade-in">How it Works</h2>
 <div class="row mb-5 fade-in">
 <div class="col-md-4 step">
 <div class="step-icon"><i class="fa-solid fa-search"></i></div>
 <h5>Search</h5>
-<p class="text-muted">Explore thousands of listings easily.</p>
 </div>
 
 <div class="col-md-4 step">
 <div class="step-icon"><i class="fa-solid fa-star"></i></div>
 <h5>Compare</h5>
-<p class="text-muted">Check ratings and reviews.</p>
 </div>
 
 <div class="col-md-4 step">
 <div class="step-icon"><i class="fa-solid fa-house"></i></div>
 <h5>Book</h5>
-<p class="text-muted">Reserve instantly.</p>
 </div>
 </div>
 
 <!-- STATS -->
-<h2 class="section-title fade-in">Platform Stats</h2>
+<h2 class="section-title fade-in" id="stats">Stats</h2>
 <div class="row mb-5 fade-in">
-<div class="col-md-4 mb-3">
+<div class="col-md-4">
 <div class="stat">
-<h2 class="text-danger">500+</h2>
+<h2 class="counter" data-target="500">0</h2>
 <p>Listings</p>
 </div>
 </div>
 
-<div class="col-md-4 mb-3">
+<div class="col-md-4">
 <div class="stat">
-<h2 class="text-success">1000+</h2>
-<p>Happy Users</p>
+<h2 class="counter" data-target="1000">0</h2>
+<p>Users</p>
 </div>
 </div>
 
-<div class="col-md-4 mb-3">
+<div class="col-md-4">
 <div class="stat">
-<h2 class="text-primary">50+</h2>
+<h2 class="counter" data-target="50">0</h2>
 <p>Cities</p>
 </div>
 </div>
@@ -213,19 +213,49 @@ We make booking simple, secure, and fast.
 
 </div>
 
-<!-- SMOOTH SCROLL ANIMATION -->
 <script>
-const elements = document.querySelectorAll('.fade-in');
 
-const observer = new IntersectionObserver((entries)=>{
+/* DARK MODE */
+function toggleDark(){
+document.body.classList.toggle('dark');
+}
+
+/* SCROLL */
+function scrollToStats(){
+document.getElementById("stats").scrollIntoView({behavior:"smooth"});
+}
+
+/* FADE ANIMATION */
+const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
 entry.target.classList.add('show');
 }
 });
-},{threshold:0.2});
+});
 
-elements.forEach(el=>observer.observe(el));
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+/* COUNTER */
+const counters=document.querySelectorAll('.counter');
+
+counters.forEach(counter=>{
+let update=()=>{
+let target=+counter.getAttribute('data-target');
+let current=+counter.innerText;
+
+let increment=target/100;
+
+if(current<target){
+counter.innerText=Math.ceil(current+increment);
+setTimeout(update,20);
+}else{
+counter.innerText=target;
+}
+}
+update();
+});
+
 </script>
 
 </body>
