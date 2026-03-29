@@ -13,129 +13,144 @@
 
 <style>
 
-/* DARK MODE */
-body.dark{
-background:#121212;
-color:#eee;
-}
-
-body.dark .stat,
-body.dark .step{
-background:#1e1e1e;
-color:#eee;
-}
-
 /* GLOBAL */
 body{
-font-family:'Poppins',sans-serif;
-background:#f5f7fb;
-transition:0.3s;
+  font-family:'Poppins',sans-serif;
+  background:#f2f4f7;
+  line-height:1.6;
+  transition:0.3s;
+}
+.container{
+  max-width:1100px;
+}
+
+/* DARK MODE */
+body.dark{
+  background:#0d0d0d;
+  color:#eee;
+}
+body.dark .stat,
+body.dark .step{
+  background: rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
 }
 
 /* TOGGLE BUTTON */
 .toggle-btn{
-position:fixed;
-top:20px;
-right:20px;
-background:#111;
-color:#fff;
-border:none;
-padding:10px 15px;
-border-radius:20px;
-cursor:pointer;
-z-index:1000;
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:#111;
+  color:#fff;
+  border:none;
+  padding:10px 15px;
+  border-radius:20px;
+  cursor:pointer;
+  z-index:1000;
 }
 
 /* HERO */
 .hero{
-height:80vh;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-color:white;
-background:
-linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3)),
-url('https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=1470&q=80')
-no-repeat center/cover;
-border-radius:25px;
-margin-bottom:80px;
+  height:80vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+  border-radius:30px;
+  overflow:hidden;
+  background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3)),
+  url('https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=1470&q=80') no-repeat center/cover;
+  margin-bottom:80px;
 }
-
 .hero h1{
-font-size:3.5rem;
+  font-size:3rem;
+  font-weight:700;
+  letter-spacing:-0.5px;
+}
+.hero p{
+  opacity:0.85;
 }
 
+/* BUTTON */
 .hero .btn{
-padding:14px 35px;
-border-radius:50px;
-background:linear-gradient(45deg,#ff4e50,#f9d423);
-border:none;
-color:white;
-cursor:pointer;
-transition:0.3s;
+  background:#111;
+  color:#fff;
+  border-radius:50px;
+  padding:12px 30px;
+  border:none;
+  cursor:pointer;
+  transition:0.3s;
 }
-
 .hero .btn:hover{
-transform:scale(1.05);
+  background:#333;
 }
 
-/* SECTIONS */
+/* TITLES */
 .section-title{
-text-align:center;
-font-weight:700;
-margin-bottom:60px;
+  text-align:center;
+  font-weight:700;
+  margin-bottom:50px;
+  font-size:2rem;
+  color:#111;
 }
 
-/* STEPS */
-.step{
-text-align:center;
-padding:30px;
-border-radius:20px;
-transition:0.3s;
+/* GLASS CARDS */
+.stat, .step{
+  text-align:center;
+  padding:30px;
+  border-radius:20px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border:1px solid rgba(255,255,255,0.3);
+  box-shadow:0 8px 25px rgba(0,0,0,0.05);
+  transition:0.3s ease;
 }
 
-.step:hover{
-background:white;
-transform:translateY(-10px);
+/* HOVER */
+.step:hover, .stat:hover{
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 15px 35px rgba(0,0,0,0.1);
 }
 
 /* ICON */
 .step-icon{
-width:80px;
-height:80px;
-background:linear-gradient(45deg,#ff4e50,#f9d423);
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:50%;
-margin:auto;
-margin-bottom:15px;
+  width:80px;
+  height:80px;
+  background:#111;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  margin:auto;
+  margin-bottom:15px;
+  font-size:20px;
+}
+
+/* TEXT */
+p{
+  color:#555;
+}
+body.dark p{
+  color:#ccc;
 }
 
 /* STATS */
-.stat{
-text-align:center;
-padding:35px;
-border-radius:20px;
-background:white;
-}
-
 .stat h2{
-font-weight:700;
+  font-weight:700;
 }
 
 /* ANIMATION */
 .fade-in{
-opacity:0;
-transform:translateY(40px);
-transition:0.8s;
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s;
 }
-
 .fade-in.show{
-opacity:1;
-transform:translateY(0);
+  opacity:1;
+  transform:translateY(0);
 }
 
 </style>
@@ -150,65 +165,77 @@ transform:translateY(0);
 
 <!-- HERO -->
 <div class="hero fade-in">
-<div>
-<h1>Welcome to Gobnb</h1>
-<p>Discover amazing places to stay around the world</p>
-<button class="btn" onclick="scrollToStats()">Explore</button>
-</div>
+  <div>
+    <h1>Welcome to Gobnb</h1>
+    <p>Discover amazing places to stay around the world</p>
+    <button class="btn" onclick="scrollToStats()">Explore</button>
+  </div>
 </div>
 
 <!-- ABOUT -->
 <div class="row justify-content-center mb-5 fade-in">
-<div class="col-md-8 text-center">
-<h2 class="section-title">Our Mission</h2>
-<p class="text-muted fs-5">
-Gobnb helps travelers discover <strong>affordable and trusted stays</strong>.
-</p>
+  <div class="col-md-8 text-center">
+    <h2 class="section-title">Our Mission</h2>
+    <p class="fs-5">
+      Gobnb helps travelers discover <strong>affordable and trusted stays</strong>.
+    </p>
+  </div>
 </div>
-</div>
+
+<hr style="border:none;height:1px;background:#e5e5e5;margin:60px 0;">
 
 <!-- STEPS -->
 <h2 class="section-title fade-in">How it Works</h2>
 <div class="row mb-5 fade-in">
-<div class="col-md-4 step">
-<div class="step-icon"><i class="fa-solid fa-search"></i></div>
-<h5>Search</h5>
+  <div class="col-md-4">
+    <div class="step">
+      <div class="step-icon"><i class="fa-solid fa-search"></i></div>
+      <h5>Search</h5>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="step">
+      <div class="step-icon"><i class="fa-solid fa-star"></i></div>
+      <h5>Compare</h5>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="step">
+      <div class="step-icon"><i class="fa-solid fa-house"></i></div>
+      <h5>Book</h5>
+    </div>
+  </div>
 </div>
 
-<div class="col-md-4 step">
-<div class="step-icon"><i class="fa-solid fa-star"></i></div>
-<h5>Compare</h5>
-</div>
-
-<div class="col-md-4 step">
-<div class="step-icon"><i class="fa-solid fa-house"></i></div>
-<h5>Book</h5>
-</div>
-</div>
+<hr style="border:none;height:1px;background:#e5e5e5;margin:60px 0;">
 
 <!-- STATS -->
 <h2 class="section-title fade-in" id="stats">Stats</h2>
 <div class="row mb-5 fade-in">
-<div class="col-md-4">
-<div class="stat">
-<h2 class="counter" data-target="500">0</h2>
-<p>Listings</p>
-</div>
-</div>
 
-<div class="col-md-4">
-<div class="stat">
-<h2 class="counter" data-target="1000">0</h2>
-<p>Users</p>
-</div>
-</div>
+  <div class="col-md-4">
+    <div class="stat">
+      <h2 class="counter" data-target="500">0</h2>
+      <p>Listings</p>
+    </div>
+  </div>
 
-<div class="col-md-4">
-<div class="stat">
-<h2 class="counter" data-target="50">0</h2>
-<p>Cities</p>
-</div>
-</div>
+  <div class="col-md-4">
+    <div class="stat">
+      <h2 class="counter" data-target="1000">0</h2>
+      <p>Users</p>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="stat">
+      <h2 class="counter" data-target="50">0</h2>
+      <p>Cities</p>
+    </div>
+  </div>
+
 </div>
 
 </div>
@@ -217,43 +244,40 @@ Gobnb helps travelers discover <strong>affordable and trusted stays</strong>.
 
 /* DARK MODE */
 function toggleDark(){
-document.body.classList.toggle('dark');
+  document.body.classList.toggle('dark');
 }
 
 /* SCROLL */
 function scrollToStats(){
-document.getElementById("stats").scrollIntoView({behavior:"smooth"});
+  document.getElementById("stats").scrollIntoView({behavior:"smooth"});
 }
 
 /* FADE ANIMATION */
 const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add('show');
-}
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
 });
-});
-
 document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
 
 /* COUNTER */
 const counters=document.querySelectorAll('.counter');
-
 counters.forEach(counter=>{
-let update=()=>{
-let target=+counter.getAttribute('data-target');
-let current=+counter.innerText;
+  let update=()=>{
+    let target=+counter.getAttribute('data-target');
+    let current=+counter.innerText;
+    let increment=target/100;
 
-let increment=target/100;
-
-if(current<target){
-counter.innerText=Math.ceil(current+increment);
-setTimeout(update,20);
-}else{
-counter.innerText=target;
-}
-}
-update();
+    if(current<target){
+      counter.innerText=Math.ceil(current+increment);
+      setTimeout(update,20);
+    }else{
+      counter.innerText=target;
+    }
+  }
+  update();
 });
 
 </script>
