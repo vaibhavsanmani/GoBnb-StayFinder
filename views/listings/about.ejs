@@ -5,150 +5,122 @@
 <title>About | Gobnb</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- GOOGLE FONT -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<!-- FONT AWESOME -->
+<!-- ICONS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 
 /* GLOBAL */
 body{
-  font-family:'Poppins',sans-serif;
-  background:#f2f4f7;
+  font-family:'Inter', sans-serif;
+  background:#ffffff;
+  color:#1d1d1f;
   line-height:1.6;
-  transition:0.3s;
 }
 .container{
-  max-width:1100px;
+  max-width:1000px;
 }
 
 /* DARK MODE */
 body.dark{
-  background:#0d0d0d;
-  color:#eee;
+  background:#000;
+  color:#f5f5f7;
 }
-body.dark .stat,
-body.dark .step{
-  background: rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.1);
+body.dark .card{
+  background:#111;
+  border:1px solid #222;
 }
 
-/* TOGGLE BUTTON */
+/* TOGGLE */
 .toggle-btn{
   position:fixed;
   top:20px;
   right:20px;
-  background:#111;
-  color:#fff;
+  background:#f5f5f7;
   border:none;
-  padding:10px 15px;
+  padding:8px 14px;
   border-radius:20px;
   cursor:pointer;
-  z-index:1000;
 }
 
 /* HERO */
 .hero{
-  height:80vh;
+  height:75vh;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  color:white;
-  border-radius:30px;
-  overflow:hidden;
-  background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3)),
-  url('https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=1470&q=80') no-repeat center/cover;
-  margin-bottom:80px;
 }
 .hero h1{
-  font-size:3rem;
-  font-weight:700;
-  letter-spacing:-0.5px;
+  font-size:3.2rem;
+  font-weight:600;
 }
 .hero p{
-  opacity:0.85;
+  color:#6e6e73;
+  margin-top:10px;
 }
 
 /* BUTTON */
-.hero .btn{
-  background:#111;
-  color:#fff;
+.btn{
+  margin-top:20px;
+  padding:10px 22px;
   border-radius:50px;
-  padding:12px 30px;
-  border:none;
+  border:1px solid #d2d2d7;
+  background:white;
   cursor:pointer;
-  transition:0.3s;
 }
-.hero .btn:hover{
-  background:#333;
+.btn:hover{
+  background:#f5f5f7;
 }
 
 /* TITLES */
 .section-title{
   text-align:center;
-  font-weight:700;
-  margin-bottom:50px;
   font-size:2rem;
-  color:#111;
+  font-weight:600;
+  margin:80px 0 40px;
 }
 
-/* GLASS CARDS */
-.stat, .step{
-  text-align:center;
+/* CARDS */
+.card{
   padding:30px;
-  border-radius:20px;
-  background: rgba(255,255,255,0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border:1px solid rgba(255,255,255,0.3);
-  box-shadow:0 8px 25px rgba(0,0,0,0.05);
-  transition:0.3s ease;
+  border-radius:18px;
+  background:#fafafa;
+  border:1px solid #e5e5e7;
+  transition:0.3s;
 }
-
-/* HOVER */
-.step:hover, .stat:hover{
-  transform:translateY(-8px) scale(1.02);
-  box-shadow:0 15px 35px rgba(0,0,0,0.1);
+.card:hover{
+  transform:translateY(-5px);
 }
 
 /* ICON */
-.step-icon{
-  width:80px;
-  height:80px;
-  background:#111;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:50%;
-  margin:auto;
-  margin-bottom:15px;
-  font-size:20px;
+.icon{
+  font-size:22px;
+  margin-bottom:10px;
+  color:#6e6e73;
 }
 
 /* TEXT */
 p{
-  color:#555;
-}
-body.dark p{
-  color:#ccc;
+  color:#6e6e73;
 }
 
 /* STATS */
-.stat h2{
-  font-weight:700;
+.stat-number{
+  font-size:2rem;
+  font-weight:600;
 }
 
 /* ANIMATION */
-.fade-in{
+.fade{
   opacity:0;
-  transform:translateY(40px);
+  transform:translateY(30px);
   transition:0.8s;
 }
-.fade-in.show{
+.fade.show{
   opacity:1;
   transform:translateY(0);
 }
@@ -158,80 +130,75 @@ body.dark p{
 
 <body>
 
-<!-- DARK MODE BUTTON -->
-<button class="toggle-btn" onclick="toggleDark()">🌙</button>
+<button class="toggle-btn" onclick="toggleDark()">☾</button>
 
-<div class="container mt-5">
+<div class="container">
 
 <!-- HERO -->
-<div class="hero fade-in">
+<div class="hero fade">
   <div>
-    <h1>Welcome to Gobnb</h1>
-    <p>Discover amazing places to stay around the world</p>
+    <h1>Gobnb</h1>
+    <p>Find places that feel like home</p>
     <button class="btn" onclick="scrollToStats()">Explore</button>
   </div>
 </div>
 
 <!-- ABOUT -->
-<div class="row justify-content-center mb-5 fade-in">
-  <div class="col-md-8 text-center">
-    <h2 class="section-title">Our Mission</h2>
-    <p class="fs-5">
-      Gobnb helps travelers discover <strong>affordable and trusted stays</strong>.
-    </p>
-  </div>
+<div class="fade text-center">
+  <h2 class="section-title">Our Mission</h2>
+  <p>
+    We help people discover simple, reliable, and affordable stays around the world.
+  </p>
 </div>
 
-<hr style="border:none;height:1px;background:#e5e5e5;margin:60px 0;">
-
 <!-- STEPS -->
-<h2 class="section-title fade-in">How it Works</h2>
-<div class="row mb-5 fade-in">
+<h2 class="section-title fade">How it works</h2>
+<div class="row text-center fade">
+
   <div class="col-md-4">
-    <div class="step">
-      <div class="step-icon"><i class="fa-solid fa-search"></i></div>
+    <div class="card">
+      <div class="icon"><i class="fa-solid fa-search"></i></div>
       <h5>Search</h5>
     </div>
   </div>
 
   <div class="col-md-4">
-    <div class="step">
-      <div class="step-icon"><i class="fa-solid fa-star"></i></div>
+    <div class="card">
+      <div class="icon"><i class="fa-solid fa-star"></i></div>
       <h5>Compare</h5>
     </div>
   </div>
 
   <div class="col-md-4">
-    <div class="step">
-      <div class="step-icon"><i class="fa-solid fa-house"></i></div>
+    <div class="card">
+      <div class="icon"><i class="fa-solid fa-house"></i></div>
       <h5>Book</h5>
     </div>
   </div>
+
 </div>
 
-<hr style="border:none;height:1px;background:#e5e5e5;margin:60px 0;">
-
 <!-- STATS -->
-<h2 class="section-title fade-in" id="stats">Stats</h2>
-<div class="row mb-5 fade-in">
+<h2 class="section-title fade" id="stats">Stats</h2>
+<div class="row text-center fade">
 
   <div class="col-md-4">
-    <div class="stat">
-      <h2 class="counter" data-target="500">0</h2>
+    <div class="card">
+      <div class="stat-number counter" data-target="500">0</div>
       <p>Listings</p>
     </div>
   </div>
 
   <div class="col-md-4">
-    <div class="stat">
-      <h2 class="counter" data-target="1000">0</h2>
+    <div class="card">
+      <div class="stat-number counter" data-target="1000">0</div>
       <p>Users</p>
     </div>
   </div>
 
   <div class="col-md-4">
-    <div class="stat">
-      <h2 class="counter" data-target="50">0</h2>
+    <div class="card">
+      <div class="stat-number counter" data-target="50">0</div>
       <p>Cities</p>
     </div>
   </div>
@@ -244,7 +211,7 @@ body.dark p{
 
 /* DARK MODE */
 function toggleDark(){
-  document.body.classList.toggle('dark');
+  document.body.classList.toggle("dark");
 }
 
 /* SCROLL */
@@ -252,28 +219,27 @@ function scrollToStats(){
   document.getElementById("stats").scrollIntoView({behavior:"smooth"});
 }
 
-/* FADE ANIMATION */
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('show');
+/* FADE */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add("show");
     }
   });
 });
-document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+document.querySelectorAll(".fade").forEach(el=>obs.observe(el));
 
 /* COUNTER */
-const counters=document.querySelectorAll('.counter');
-counters.forEach(counter=>{
+document.querySelectorAll('.counter').forEach(counter=>{
   let update=()=>{
-    let target=+counter.getAttribute('data-target');
+    let target=+counter.dataset.target;
     let current=+counter.innerText;
-    let increment=target/100;
+    let inc=target/100;
 
     if(current<target){
-      counter.innerText=Math.ceil(current+increment);
+      counter.innerText=Math.ceil(current+inc);
       setTimeout(update,20);
-    }else{
+    } else {
       counter.innerText=target;
     }
   }
