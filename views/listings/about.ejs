@@ -5,10 +5,7 @@
 <title>About | Gobnb</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- FONT -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-<!-- ICONS -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
@@ -16,118 +13,115 @@
 /* GLOBAL */
 body{
   font-family:'Inter', sans-serif;
-  background:#ffffff;
+  margin:0;
+  background:#fff;
   color:#1d1d1f;
-  line-height:1.6;
   scroll-behavior:smooth;
 }
-.container{
-  max-width:1000px;
-}
 
-/* DARK MODE */
-body.dark{
-  background:#000;
-  color:#f5f5f7;
-}
-body.dark .card{
-  background:#111;
-  border:1px solid #222;
-}
-
-/* TOGGLE */
-.toggle-btn{
+/* NAVBAR (GLASS) */
+.navbar{
   position:fixed;
-  top:20px;
-  right:20px;
-  background:#f5f5f7;
-  border:none;
-  padding:8px 14px;
-  border-radius:20px;
-  cursor:pointer;
+  top:0;
+  width:100%;
+  padding:15px 40px;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.7);
+  display:flex;
+  justify-content:space-between;
+  z-index:1000;
+}
+.navbar h4{
+  margin:0;
+  font-weight:600;
 }
 
-/* HERO */
+/* PROGRESS BAR */
+.progress-bar{
+  position:fixed;
+  top:0;
+  left:0;
+  height:3px;
+  background:#000;
+  width:0%;
+  z-index:2000;
+}
+
+/* HERO PARALLAX */
 .hero{
-  height:75vh;
+  height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
+  background:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470') center/cover;
+  color:white;
+}
+.hero-content{
+  transform:translateY(0);
+  transition:0.3s;
 }
 .hero h1{
-  font-size:3.2rem;
-  font-weight:600;
+  font-size:3.5rem;
 }
-.hero p{
-  color:#6e6e73;
-  margin-top:10px;
+
+/* TEXT REVEAL */
+.reveal span{
+  opacity:0;
+  display:inline-block;
+  transform:translateY(20px);
+  transition:0.5s;
+}
+.reveal.show span{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* SECTION */
+.section{
+  padding:100px 20px;
+  max-width:1000px;
+  margin:auto;
+  opacity:0;
+  transform:translateY(80px) scale(0.96);
+  transition:1.2s cubic-bezier(0.25,1,0.5,1);
+}
+.section.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
+/* CARDS */
+.card{
+  padding:25px;
+  border-radius:18px;
+  border:1px solid #e5e5e7;
+  background:#fafafa;
+  transition:0.3s;
+}
+.card:hover{
+  transform:translateY(-8px);
+}
+
+/* GRID */
+.row{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.col{
+  flex:1;
+  min-width:250px;
 }
 
 /* BUTTON */
 .btn{
   margin-top:20px;
-  padding:10px 22px;
-  border-radius:50px;
-  border:1px solid #d2d2d7;
+  padding:10px 20px;
+  border-radius:30px;
+  border:1px solid #ccc;
   background:white;
   cursor:pointer;
-}
-.btn:hover{
-  background:#f5f5f7;
-}
-
-/* TITLES */
-.section-title{
-  text-align:center;
-  font-size:2rem;
-  font-weight:600;
-  margin:80px 0 40px;
-}
-
-/* CARDS */
-.card{
-  padding:30px;
-  border-radius:18px;
-  background:#fafafa;
-  border:1px solid #e5e5e7;
-  transition:0.3s;
-}
-.card:hover{
-  transform:translateY(-5px);
-}
-
-/* ICON */
-.icon{
-  font-size:22px;
-  margin-bottom:10px;
-  color:#6e6e73;
-}
-
-/* TEXT */
-p{
-  color:#6e6e73;
-}
-body.dark p{
-  color:#ccc;
-}
-
-/* STATS */
-.stat-number{
-  font-size:2rem;
-  font-weight:600;
-}
-
-/* 🍎 APPLE SCROLL EFFECT */
-.section{
-  opacity:0;
-  transform:translateY(80px) scale(0.96);
-  transition:all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-  will-change: transform, opacity;
-}
-.section.show{
-  opacity:1;
-  transform:translateY(0) scale(1);
 }
 
 </style>
@@ -135,85 +129,46 @@ body.dark p{
 
 <body>
 
-<button class="toggle-btn" onclick="toggleDark()">☾</button>
+<div class="progress-bar" id="progress"></div>
 
-<div class="container">
+<div class="navbar">
+  <h4>Gobnb</h4>
+  <button onclick="toggleDark()">☾</button>
+</div>
 
 <!-- HERO -->
-<div class="hero section">
-  <div>
-    <h1>Gobnb</h1>
-    <p>Find places that feel like home</p>
-    <button class="btn" onclick="scrollToStats()">Explore</button>
+<div class="hero">
+  <div class="hero-content">
+    <h1 class="reveal">Find Your Stay</h1>
+    <p>Experience comfort worldwide</p>
+    <button class="btn" onclick="scrollToNext()">Explore</button>
   </div>
 </div>
 
 <!-- ABOUT -->
-<div class="section text-center">
-  <h2 class="section-title">Our Mission</h2>
-  <p>
-    We help people discover simple, reliable, and affordable stays around the world.
-  </p>
+<div class="section">
+  <h2 class="reveal">Our Mission</h2>
+  <p>We simplify travel with trusted stays.</p>
 </div>
 
 <!-- STEPS -->
 <div class="section">
-  <h2 class="section-title">How it works</h2>
-
-  <div class="row text-center">
-    <div class="col-md-4">
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-search"></i></div>
-        <h5>Search</h5>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-star"></i></div>
-        <h5>Compare</h5>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card">
-        <div class="icon"><i class="fa-solid fa-house"></i></div>
-        <h5>Book</h5>
-      </div>
-    </div>
+  <h2 class="reveal">How it works</h2>
+  <div class="row">
+    <div class="col"><div class="card">Search</div></div>
+    <div class="col"><div class="card">Compare</div></div>
+    <div class="col"><div class="card">Book</div></div>
   </div>
 </div>
 
 <!-- STATS -->
-<div class="section" id="stats">
-  <h2 class="section-title">Stats</h2>
-
-  <div class="row text-center">
-
-    <div class="col-md-4">
-      <div class="card">
-        <div class="stat-number counter" data-target="500">0</div>
-        <p>Listings</p>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card">
-        <div class="stat-number counter" data-target="1000">0</div>
-        <p>Users</p>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card">
-        <div class="stat-number counter" data-target="50">0</div>
-        <p>Cities</p>
-      </div>
-    </div>
-
+<div class="section">
+  <h2 class="reveal">Stats</h2>
+  <div class="row">
+    <div class="col"><div class="card counter" data-target="500">0</div></div>
+    <div class="col"><div class="card counter" data-target="1000">0</div></div>
+    <div class="col"><div class="card counter" data-target="50">0</div></div>
   </div>
-</div>
-
 </div>
 
 <script>
@@ -223,26 +178,44 @@ function toggleDark(){
   document.body.classList.toggle("dark");
 }
 
-/* SCROLL */
-function scrollToStats(){
-  document.getElementById("stats").scrollIntoView({behavior:"smooth"});
+/* SCROLL NEXT */
+function scrollToNext(){
+  window.scrollBy({top:window.innerHeight, behavior:'smooth'});
 }
 
-/* 🍎 SECTION TRANSITIONS */
-const sections = document.querySelectorAll(".section");
+/* SECTION ANIMATION */
+const sections=document.querySelectorAll(".section");
+const reveals=document.querySelectorAll(".reveal");
 
-const observer = new IntersectionObserver((entries)=>{
+const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(entry.isIntersecting){
       entry.target.classList.add("show");
     }
   });
-},{
-  threshold:0.25
+},{threshold:0.3});
+
+sections.forEach(s=>observer.observe(s));
+reveals.forEach(r=>observer.observe(r));
+
+/* TEXT SPLIT */
+document.querySelectorAll(".reveal").forEach(el=>{
+  let text=el.innerText;
+  el.innerHTML=text.split("").map(char=>`<span>${char}</span>`).join("");
 });
 
-sections.forEach(section=>{
-  observer.observe(section);
+/* PARALLAX */
+window.addEventListener("scroll",()=>{
+  let scrollY=window.scrollY;
+  document.querySelector(".hero-content").style.transform=`translateY(${scrollY * 0.3}px)`;
+});
+
+/* PROGRESS BAR */
+window.addEventListener("scroll",()=>{
+  let scrollTop=window.scrollY;
+  let docHeight=document.body.scrollHeight - window.innerHeight;
+  let progress=(scrollTop/docHeight)*100;
+  document.getElementById("progress").style.width=progress+"%";
 });
 
 /* COUNTER */
@@ -255,7 +228,7 @@ document.querySelectorAll('.counter').forEach(counter=>{
     if(current<target){
       counter.innerText=Math.ceil(current+inc);
       setTimeout(update,20);
-    } else {
+    }else{
       counter.innerText=target;
     }
   }
