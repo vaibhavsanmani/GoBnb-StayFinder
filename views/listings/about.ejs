@@ -11,29 +11,35 @@
 <style>
 
 /* GLOBAL */
+html{
+  scroll-snap-type:y mandatory;
+}
 body{
-  font-family:'Inter', sans-serif;
   margin:0;
+  font-family:'Inter', sans-serif;
   background:#fff;
   color:#1d1d1f;
   scroll-behavior:smooth;
 }
 
-/* NAVBAR (GLASS) */
+/* NAVBAR */
 .navbar{
   position:fixed;
   top:0;
   width:100%;
   padding:15px 40px;
-  backdrop-filter:blur(12px);
-  background:rgba(255,255,255,0.7);
   display:flex;
   justify-content:space-between;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.7);
+  border-bottom:1px solid rgba(0,0,0,0.05);
   z-index:1000;
 }
-.navbar h4{
-  margin:0;
-  font-weight:600;
+.navbar a{
+  margin-left:20px;
+  text-decoration:none;
+  color:#1d1d1f;
+  font-weight:500;
 }
 
 /* PROGRESS BAR */
@@ -47,7 +53,7 @@ body{
   z-index:2000;
 }
 
-/* HERO PARALLAX */
+/* HERO */
 .hero{
   height:100vh;
   display:flex;
@@ -56,25 +62,32 @@ body{
   text-align:center;
   background:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470') center/cover;
   color:white;
+  scroll-snap-align:start;
 }
 .hero-content{
-  transform:translateY(0);
   transition:0.3s;
 }
 .hero h1{
   font-size:3.5rem;
+  letter-spacing:-1px;
+}
+.hero p{
+  opacity:0.9;
 }
 
-/* TEXT REVEAL */
-.reveal span{
-  opacity:0;
-  display:inline-block;
-  transform:translateY(20px);
-  transition:0.5s;
+/* BUTTON */
+.btn{
+  margin-top:20px;
+  padding:10px 20px;
+  border-radius:30px;
+  border:1px solid #ccc;
+  background:white;
+  cursor:pointer;
+  transition:0.3s;
 }
-.reveal.show span{
-  opacity:1;
-  transform:translateY(0);
+.btn:hover{
+  background:#f5f5f7;
+  transform:scale(1.05);
 }
 
 /* SECTION */
@@ -85,22 +98,22 @@ body{
   opacity:0;
   transform:translateY(80px) scale(0.96);
   transition:1.2s cubic-bezier(0.25,1,0.5,1);
+  scroll-snap-align:start;
 }
 .section.show{
   opacity:1;
   transform:translateY(0) scale(1);
 }
 
-/* CARDS */
-.card{
-  padding:25px;
-  border-radius:18px;
-  border:1px solid #e5e5e7;
-  background:#fafafa;
-  transition:0.3s;
+/* TEXT FADE */
+.text-fade{
+  opacity:0;
+  transform:translateY(20px);
+  transition:0.8s ease;
 }
-.card:hover{
-  transform:translateY(-8px);
+.text-fade.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
 /* GRID */
@@ -114,14 +127,49 @@ body{
   min-width:250px;
 }
 
-/* BUTTON */
-.btn{
-  margin-top:20px;
-  padding:10px 20px;
-  border-radius:30px;
-  border:1px solid #ccc;
-  background:white;
-  cursor:pointer;
+/* CARD */
+.card{
+  padding:25px;
+  border-radius:18px;
+  border:1px solid #e5e5e7;
+  background:#fafafa;
+  transition:0.3s;
+}
+.card:hover{
+  transform:translateY(-8px) scale(1.01);
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* DIVIDER */
+.divider{
+  height:1px;
+  background:#e5e5e7;
+  margin:80px 0;
+  opacity:0.6;
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:40px;
+  color:#6e6e73;
+}
+
+/* DARK MODE */
+body.dark{
+  background:#000;
+  color:#f5f5f7;
+}
+body.dark .card{
+  background:#111;
+  border:1px solid #222;
+}
+body.dark .navbar{
+  background:rgba(0,0,0,0.7);
+}
+body.dark .btn{
+  background:#111;
+  color:#fff;
 }
 
 </style>
@@ -133,27 +181,33 @@ body{
 
 <div class="navbar">
   <h4>Gobnb</h4>
-  <button onclick="toggleDark()">☾</button>
+  <div>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <button onclick="toggleDark()">☾</button>
+  </div>
 </div>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-content">
-    <h1 class="reveal">Find Your Stay</h1>
-    <p>Experience comfort worldwide</p>
+    <h1 class="text-fade">Find Your Stay</h1>
+    <p class="text-fade">Experience comfort worldwide</p>
     <button class="btn" onclick="scrollToNext()">Explore</button>
   </div>
 </div>
 
 <!-- ABOUT -->
 <div class="section">
-  <h2 class="reveal">Our Mission</h2>
-  <p>We simplify travel with trusted stays.</p>
+  <h2 class="text-fade">Our Mission</h2>
+  <p class="text-fade">We simplify travel with trusted stays.</p>
 </div>
+
+<div class="divider"></div>
 
 <!-- STEPS -->
 <div class="section">
-  <h2 class="reveal">How it works</h2>
+  <h2 class="text-fade">How it works</h2>
   <div class="row">
     <div class="col"><div class="card">Search</div></div>
     <div class="col"><div class="card">Compare</div></div>
@@ -161,14 +215,21 @@ body{
   </div>
 </div>
 
+<div class="divider"></div>
+
 <!-- STATS -->
 <div class="section">
-  <h2 class="reveal">Stats</h2>
+  <h2 class="text-fade">Stats</h2>
   <div class="row">
     <div class="col"><div class="card counter" data-target="500">0</div></div>
     <div class="col"><div class="card counter" data-target="1000">0</div></div>
     <div class="col"><div class="card counter" data-target="50">0</div></div>
   </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  © 2026 Gobnb. All rights reserved.
 </div>
 
 <script>
@@ -185,7 +246,7 @@ function scrollToNext(){
 
 /* SECTION ANIMATION */
 const sections=document.querySelectorAll(".section");
-const reveals=document.querySelectorAll(".reveal");
+const fades=document.querySelectorAll(".text-fade");
 
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
@@ -196,18 +257,12 @@ const observer=new IntersectionObserver(entries=>{
 },{threshold:0.3});
 
 sections.forEach(s=>observer.observe(s));
-reveals.forEach(r=>observer.observe(r));
-
-/* TEXT SPLIT */
-document.querySelectorAll(".reveal").forEach(el=>{
-  let text=el.innerText;
-  el.innerHTML=text.split("").map(char=>`<span>${char}</span>`).join("");
-});
+fades.forEach(f=>observer.observe(f));
 
 /* PARALLAX */
 window.addEventListener("scroll",()=>{
   let scrollY=window.scrollY;
-  document.querySelector(".hero-content").style.transform=`translateY(${scrollY * 0.3}px)`;
+  document.querySelector(".hero-content").style.transform=`translateY(${scrollY*0.3}px)`;
 });
 
 /* PROGRESS BAR */
