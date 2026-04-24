@@ -21,12 +21,12 @@
   box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
 
-/* LOGO */
-.navbar-brand {
-  font-size: 22px;
-  font-weight: 700;
-  color: #fe424d;
+.logo-img{
+  width:100px;
+  height:100px;
+  object-fit:contain;
 }
+
 /* SEARCH BOX */
 .search-box {
   display: flex;
@@ -158,8 +158,9 @@
   <div class="container-fluid">
 
     <!-- LOGO -->
-    <a class="navbar-brand" href="/listings">
-      <i class="fa-regular fa-compass"></i> Gobnb
+    <a class="navbar-brand d-flex align-items-center" href="/listings">
+      <img src="/images/go.png" alt="Gobnb Logo" class="logo-img">
+      <span class="brand-text"></span>
     </a>
 
     <!-- SEARCH -->
