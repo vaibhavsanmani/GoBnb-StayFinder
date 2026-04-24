@@ -111,3 +111,11 @@ async function startServer() {
     app.listen(PORT, () => {
       console.log(`🚀 Server listening on ${PORT}`);
     });
+
+  } catch (err) {
+    console.log("❌ DB Connection Failed:");
+    console.log(err);
+  }
+}
+
+startServer();
