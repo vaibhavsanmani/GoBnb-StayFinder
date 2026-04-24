@@ -22,7 +22,7 @@ module.exports.showListing=async (req, res) => {
       req.flash("error", "Listing not found!!");
       return res.redirect("/listings");
     }
-    res.render("listings/show.ejs", { listing });
+    res.render("listings/show.ejs", { listing, mapApiKey: process.env.MAP_API_KEY });
 };
 
 module.exports.createListing = async (req, res) => {
@@ -43,7 +43,7 @@ module.exports.createListing = async (req, res) => {
       {
         params: {
           address: address,
-          key: process.env.MAPS_API_KEY
+          key: process.env.MAP_API_KEY
         }
       }
     );
