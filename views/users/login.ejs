@@ -10,9 +10,10 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
+
 /* Background */
 body {
-    background-color: #f7f7f7;
+    background: linear-gradient(to right, #f7f7f7, #eef1f5);
 }
 
 /* Centering */
@@ -21,36 +22,45 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 15px;
 }
 
 /* Card */
 .login-container {
     background: white;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     width: 100%;
     max-width: 400px;
 }
 
+/* Desktop spacing */
+@media (min-width: 768px) {
+    .login-container {
+        padding: 2rem;
+    }
+}
+
 /* Title */
 .login-title {
     font-weight: 600;
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 
 /* Inputs */
 .form-control {
     border-radius: 10px;
-    padding: 10px;
+    padding: 12px;
+    font-size: 14px;
 }
 
 /* Button */
 .btn-dark {
     width: 100%;
     border-radius: 10px;
-    padding: 10px;
+    padding: 12px;
     font-weight: 500;
     transition: 0.3s;
 }
@@ -58,6 +68,14 @@ body {
 .btn-dark:hover {
     transform: scale(1.03);
 }
+
+/* Small devices tweaks */
+@media (max-width: 576px) {
+    .login-title {
+        font-size: 20px;
+    }
+}
+
 </style>
 </head>
 
@@ -76,6 +94,7 @@ body {
                     name="username"
                     type="text"
                     class="form-control"
+                    placeholder="Enter username"
                     required>
                 <div class="invalid-feedback">Username is required</div>
             </div>
@@ -86,11 +105,12 @@ body {
                     name="password"
                     type="password"
                     class="form-control"
+                    placeholder="Enter password"
                     required>
                 <div class="invalid-feedback">Password is required</div>
             </div>
 
-            <button class="btn btn-dark">Login</button>
+            <button class="btn btn-dark mt-2">Login</button>
 
         </form>
 
