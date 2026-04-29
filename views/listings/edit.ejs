@@ -1,86 +1,200 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-7">
-            
-            <div class="card shadow-sm border-0 rounded-4">
-                <div class="card-body p-4">
-                    
-                    <h4 class="mb-4 fw-semibold text-center">Edit Listing</h4>
+<style>
+/* FILTER BAR */
+#filters {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 10px 8px;
+    align-items: center;
+    scrollbar-width: none;
+}
+#filters::-webkit-scrollbar {
+    display: none;
+}
 
-                    <form method="post" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate enctype="multipart/form-data">
+/* FILTER ITEM */
+.filter-item {
+    text-align: center;
+    min-width: 65px;
+    opacity: 0.8;
+    flex-shrink: 0;
+}
+.filter-item:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+.filter-item i {
+    font-size: 18px;
+}
+.filter-item p {
+    font-size: 0.75rem;
+    margin: 0;
+}
 
-                        <div class="mb-3">
-                            <input 
-                                name="listing[title]" 
-                                value="<%= listing.title %>" 
-                                class="form-control rounded-3" 
-                                type="text" 
-                                placeholder="Title"
-                                required>
-                        </div>
+/* TAX SWITCH */
+.tax {
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
 
-                        <div class="mb-3">
-                            <textarea 
-                                name="listing[description]" 
-                                class="form-control rounded-3" 
-                                rows="3"
-                                placeholder="Description"
-                                required><%= listing.description %></textarea>
-                        </div>
+/* CARD */
+.listing-card {
+    border: none;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: 0.25s;
+}
+.listing-card:hover {
+    transform: translateY(-3px);
+}
 
-                        <div class="mb-3">
-                            <input 
-                                name="listing[image]" 
-                                type="file"
-                                class="form-control rounded-3" 
-                                placeholder="Image URL"
-                                required
-                            />
-                        </div>
+/* IMAGE */
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
 
-                        <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <label for="image" class="form-label">upload image</label>
-                                <input 
-                                    name="listing[price]" 
-                                    value="<%= listing.price %>" 
-                                    class="form-control rounded-3" 
-                                    placeholder="Price"
-                                    required>
-                            </div>
+/* MOBILE TWEAK */
+@media (max-width: 576px) {
+    .card-img-top {
+        height: 170px;
+    }
+}
 
-                            <div class="col-md-8 mb-3">
-                                <input 
-                                    name="listing[country]" 
-                                    value="<%= listing.country %>" 
-                                    class="form-control rounded-3" 
-                                    placeholder="Country"
-                                    required>
-                            </div>
-                        </div>
+/* TAX TEXT */
+.tax-info {
+    display: none;
+    font-size: 0.8rem;
+    color: gray;
+}
+</style>
 
-                        <div class="mb-4">
-                            <input 
-                                name="listing[location]" 
-                                value="<%= listing.location %>" 
-                                class="form-control rounded-3" 
-                                placeholder="Location"
-                                required>
-                        </div>
+<body>
 
-                        <div class="d-grid">
-                            <button class="btn btn-dark rounded-3 py-2">
-                                Update Listing
-                            </button>
-                        </div>
+<!-- FILTERS -->
+<div id="filters">
 
-                    </form>
+    <div class="filter-item">
+        <i class="fa-solid fa-fire"></i>
+        <p>Trending</p>
+    </div>
 
-                </div>
-            </div>
+    <div class="filter-item">
+        <i class="fa-solid fa-bed"></i>
+        <p>Rooms</p>
+    </div>
 
+    <div class="filter-item">
+        <i class="fa-solid fa-mountain-city"></i>
+        <p>Cities</p>
+    </div>
+
+    <div class="filter-item">
+        <i class="fa-solid fa-mountain"></i>
+        <p>Mountains</p>
+    </div>
+
+    <div class="filter-item">
+        <i class="fa-brands fa-fort-awesome"></i>
+        <p>Castles</p>
+    </div>
+
+    <div class="filter-item">
+        <i class="fa-solid fa-snowflake"></i>
+        <p>Arctic</p>
+    </div>
+
+    <div class="filter-item">
+        <i class="fa-solid fa-campground"></i>
+        <p>Camping</p>
+    </div>
+
+    <div class="filter-item">
+        <i class="fa-solid fa-cow"></i>
+        <p>Farms</p>
+    </div>
+
+    <div class="filter-item">
+        <i class="fa-solid fa-person-swimming"></i>
+        <p>Pools</p>
+    </div>
+
+    <div class="filter-item">
+        <i class="fa-solid fa-sailboat"></i>
+        <p>Boats</p>
+    </div>
+
+    <!-- TAX SWITCH -->
+    <div class="tax ms-2">
+        <div class="form-check form-switch m-0">
+            <input class="form-check-input" type="checkbox" id="taxSwitch">
+            <label class="form-check-label small">Tax</label>
         </div>
     </div>
+
 </div>
+
+<!-- LISTINGS GRID -->
+<div class="container-fluid px-2 px-md-3">
+    <div class="row g-3 row-cols-2 row-cols-md-2 row-cols-lg-3 mb-3">
+
+        <% for(let listings of allListings){ %>
+
+        <div class="col">
+            <a href="listings/<%= listings._id %>" class="text-decoration-none text-dark">
+
+                <div class="card listing-card h-100">
+
+                    <img src="<%= listings.image.url %>" 
+                         onerror="this.src='/images/default.jpg'" 
+                         class="card-img-top">
+
+                    <div class="card-body p-2 p-md-3">
+
+                        <p class="mb-1 fw-semibold">
+                            <%= listings.title %>
+                        </p>
+
+                        <p class="mb-1 text-muted small">
+                            <%= listings.description %>
+                        </p>
+
+                        <p class="mb-0 fw-bold">
+                            &#8377;<%= listings.price?.toLocaleString("en-IN") || "N/A" %>/night
+                            <span class="tax-info"> +18% GST</span>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </a>
+        </div>
+
+        <% } %>
+
+    </div>
+</div>
+
+<!-- SCRIPT -->
+<script>
+const taxSwitch = document.getElementById("taxSwitch");
+
+taxSwitch.addEventListener("click", () => {
+    const taxInfo = document.querySelectorAll(".tax-info");
+
+    taxInfo.forEach(el => {
+        el.style.display =
+            el.style.display === "inline" ? "none" : "inline";
+    });
+});
+</script>
+
+</body>
