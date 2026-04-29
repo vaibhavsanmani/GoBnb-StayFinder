@@ -8,144 +8,88 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<title>Premium Navbar</title>
+<title>Responsive Navbar</title>
 
 <style>
 
-/* NAVBAR (GLASS EFFECT) */
+/* NAVBAR */
 .navbar {
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.9);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid #eee;
-  padding: 12px 40px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  padding: 10px 15px;
 }
 
-.logo-img{
-  width:100px;
-  height:100px;
-  object-fit:contain;
+/* LOGO */
+.logo-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
 }
 
-/* SEARCH BOX */
+/* SEARCH */
 .search-box {
   display: flex;
   align-items: center;
   border: 1px solid #ddd;
   border-radius: 50px;
   padding: 6px 10px;
-  gap: 10px;
+  gap: 8px;
   background: #fff;
-  transition: all 0.3s ease;
 }
-
-.search-box:hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
-
 .search-box input {
   border: none;
   outline: none;
-  font-size: 14px;
-  width: 100px;
+  font-size: 13px;
+  width: 80px;
 }
 
-/* SEARCH BUTTON */
+/* BUTTON */
 .search-btn {
-  background: linear-gradient(135deg,#ff385c,#fe424d);
+  background: #ff385c;
   color: #fff;
   border-radius: 50%;
   border: none;
-  width: 36px;
-  height: 36px;
-  transition: 0.3s;
+  width: 32px;
+  height: 32px;
 }
 
-.search-btn:hover {
-  transform: scale(1.1);
-}
-
-/* RIGHT SIDE */
+/* RIGHT */
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 /* HOST BUTTON */
 .host-btn {
-  padding: 8px 15px;
-  border-radius: 25px;
-  transition: 0.3s;
-  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 13px;
 }
 
-.host-btn:hover {
-  background: #f7f7f7;
-}
-
-/* PROFILE BUTTON */
-.profile-btn {
-  display: flex;
-  align-items: center;
-  border: 1px solid #ddd;
-  padding: 6px 12px;
-  border-radius: 30px;
-  gap: 10px;
-  cursor: pointer;
-  background: #fff;
-  transition: 0.3s;
-}
-
-.profile-btn:hover {
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-/* AVATAR */
-.avatar {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #ddd;
-}
-
-/* DROPDOWN PREMIUM */
-.dropdown-menu {
-  border-radius: 15px;
-  padding: 10px 0;
-  border: none;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  animation: fadeSlide 0.3s ease;
-}
-
-/* ANIMATION */
-@keyframes fadeSlide {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.dropdown-item {
-  padding: 10px 20px;
-  font-size: 14px;
-  transition: 0.2s;
-}
-
-.dropdown-item:hover {
-  background: #f7f7f7;
-  padding-left: 25px;
-}
-
-/* MOBILE */
+/* MOBILE FIX */
 @media (max-width: 768px) {
+
+  .logo-img {
+    width: 50px;
+    height: 50px;
+  }
+
   .search-box {
     display: none;
+  }
+
+  .nav-right {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .nav-right a {
+    flex: 1;
+    text-align: center;
   }
 }
 
@@ -159,40 +103,44 @@
 
     <!-- LOGO -->
     <a class="navbar-brand d-flex align-items-center" href="/listings">
-      <img src="/images/go.png" alt="Gobnb Logo" class="logo-img">
-      <span class="brand-text"></span>
+      <img src="/images/go.png" class="logo-img">
     </a>
 
-    <!-- SEARCH -->
-    <div class="mx-auto d-none d-lg-block">
-      <form class="search-box">
-        <input type="text" placeholder="Anywhere">
-        <input type="text" placeholder="Any week">
-        <input type="text" placeholder="Guests">
-        <button class="search-btn">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-      </form>
-    </div>
+    <!-- TOGGLE -->
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <!-- RIGHT -->
-    <div class="nav-right ms-auto">
+    <!-- NAV CONTENT -->
+    <div class="collapse navbar-collapse" id="nav">
 
-      <!-- PROFILE -->
-     <div class="nav-right ms-auto">
+      <!-- SEARCH (CENTER) -->
+      <div class="mx-auto d-none d-lg-block">
+        <form class="search-box">
+          <input type="text" placeholder="Anywhere">
+          <input type="text" placeholder="Any week">
+          <input type="text" placeholder="Guests">
+          <button class="search-btn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div>
 
-  <a href="/listings/new" class="host-btn text-dark text-decoration-none px-3 ">
-    Gobnb your home <i class="fa-brands fa-airbnb"></i>
-  </a>
-  <!-- SIMPLE AUTH BUTTONS -->
-  <% if(!currUser){ %>
-    <a href="/login" class="btn btn-outline-dark rounded-pill px-3">Login</a>
-    <a href="/signup" class="btn btn-danger rounded-pill px-3">Signup</a>
-  <% } else { %>
-    <a href="/logout" class="btn btn-danger rounded-pill px-2.5">Logout</a>
-  <% } %>
+      <!-- RIGHT SIDE -->
+      <div class="nav-right ms-auto">
 
-</div>
+        <a href="/listings/new" class="host-btn text-dark text-decoration-none">
+          Host <i class="fa-brands fa-airbnb"></i>
+        </a>
+
+        <% if(!currUser){ %>
+          <a href="/login" class="btn btn-outline-dark rounded-pill">Login</a>
+          <a href="/signup" class="btn btn-danger rounded-pill">Signup</a>
+        <% } else { %>
+          <a href="/logout" class="btn btn-danger rounded-pill">Logout</a>
+        <% } %>
+
+      </div>
 
     </div>
 
