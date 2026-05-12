@@ -1,78 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>Login | GoBnb</title>
 
 <!-- Bootstrap -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+
+<!-- Bootstrap Icons -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+/>
 
 <style>
 
-/* Background */
-body {
-    background: linear-gradient(to right, #f7f7f7, #eef1f5);
+/* BODY */
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#f3f4f6,#e8edf5);
+    overflow-x:hidden;
 }
 
-/* Centering */
-.container-center {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
+/* CENTER */
+.container-center{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
 }
 
-/* Card */
-.login-container {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    width: 100%;
-    max-width: 400px;
+/* LOGIN CARD */
+.login-container{
+    width:100%;
+    max-width:420px;
+    background:white;
+    padding:2rem;
+    border-radius:24px;
+    box-shadow:0 10px 35px rgba(0,0,0,0.08);
+    position:relative;
+    overflow:hidden;
 }
 
-/* Desktop spacing */
-@media (min-width: 768px) {
-    .login-container {
-        padding: 2rem;
+/* TOP DESIGN */
+.login-container::before{
+    content:"";
+    position:absolute;
+    top:-60px;
+    right:-60px;
+    width:160px;
+    height:160px;
+    background:rgba(0,0,0,0.04);
+    border-radius:50%;
+}
+
+.login-container::after{
+    content:"";
+    position:absolute;
+    bottom:-50px;
+    left:-50px;
+    width:140px;
+    height:140px;
+    background:rgba(0,0,0,0.03);
+    border-radius:50%;
+}
+
+/* LOGO */
+.logo-box{
+    width:70px;
+    height:70px;
+    margin:auto;
+    background:black;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:18px;
+    font-size:28px;
+    margin-bottom:18px;
+}
+
+/* TITLE */
+.login-title{
+    text-align:center;
+    font-weight:700;
+    font-size:32px;
+    margin-bottom:6px;
+}
+
+.login-subtitle{
+    text-align:center;
+    color:#777;
+    font-size:14px;
+    margin-bottom:28px;
+}
+
+/* INPUT BOX */
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group-text{
+    border-radius:14px 0 0 14px;
+    background:#f8f9fa;
+    border-right:none;
+}
+
+.form-control{
+    border-radius:0 14px 14px 0;
+    padding:14px;
+    font-size:15px;
+    border-left:none;
+    box-shadow:none !important;
+}
+
+.form-control:focus{
+    border-color:#ced4da;
+}
+
+/* BUTTON */
+.btn-dark{
+    width:100%;
+    border-radius:14px;
+    padding:14px;
+    font-weight:600;
+    transition:0.3s;
+    font-size:15px;
+}
+
+.btn-dark:hover{
+    transform:translateY(-2px);
+}
+
+/* EXTRA */
+.bottom-text{
+    text-align:center;
+    margin-top:20px;
+    font-size:14px;
+    color:#666;
+}
+
+.bottom-text a{
+    text-decoration:none;
+    font-weight:600;
+    color:black;
+}
+
+/* MOBILE */
+@media(max-width:576px){
+
+    .container-center{
+        padding:16px;
     }
-}
 
-/* Title */
-.login-title {
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 1.2rem;
-}
+    .login-container{
+        padding:1.5rem;
+        border-radius:20px;
+    }
 
-/* Inputs */
-.form-control {
-    border-radius: 10px;
-    padding: 12px;
-    font-size: 14px;
-}
+    .login-title{
+        font-size:26px;
+    }
 
-/* Button */
-.btn-dark {
-    width: 100%;
-    border-radius: 10px;
-    padding: 12px;
-    font-weight: 500;
-    transition: 0.3s;
-}
+    .logo-box{
+        width:60px;
+        height:60px;
+        font-size:24px;
+    }
 
-.btn-dark:hover {
-    transform: scale(1.03);
-}
+    .form-control{
+        padding:12px;
+        font-size:14px;
+    }
 
-/* Small devices tweaks */
-@media (max-width: 576px) {
-    .login-title {
-        font-size: 20px;
+    .btn-dark{
+        padding:12px;
     }
 }
 
@@ -82,59 +192,102 @@ body {
 <body>
 
 <div class="container-center">
+
     <div class="login-container">
 
-        <h2 class="login-title">Login to GoBnb</h2>
+        <!-- LOGO -->
+        <div class="logo-box">
+            <i class="bi bi-house-door-fill"></i>
+        </div>
 
+        <!-- TITLE -->
+        <h2 class="login-title">Welcome Back</h2>
+
+        <p class="login-subtitle">
+            Login to continue to GoBnb
+        </p>
+
+        <!-- FORM -->
         <form action="/login" method="POST" class="needs-validation" novalidate>
 
-            <div class="mb-3">
-                <label class="form-label">Username</label>
-                <input 
-                    name="username"
+            <!-- USERNAME -->
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-person"></i>
+                </span>
+
+                <input
                     type="text"
+                    name="username"
                     class="form-control"
-                    placeholder="Enter username"
-                    required>
-                <div class="invalid-feedback">Username is required</div>
+                    placeholder="Enter Username"
+                    required
+                >
+
+                <div class="invalid-feedback">
+                    Username is required
+                </div>
             </div>
 
-            <div class="mb-3">
-                <label class="form-label">Password</label>
-                <input 
-                    name="password"
+            <!-- PASSWORD -->
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-lock"></i>
+                </span>
+
+                <input
                     type="password"
+                    name="password"
                     class="form-control"
-                    placeholder="Enter password"
-                    required>
-                <div class="invalid-feedback">Password is required</div>
+                    placeholder="Enter Password"
+                    required
+                >
+
+                <div class="invalid-feedback">
+                    Password is required
+                </div>
             </div>
 
-            <button class="btn btn-dark mt-2">Login</button>
+            <!-- BUTTON -->
+            <button class="btn btn-dark mt-2">
+                Login
+            </button>
 
         </form>
 
+        <!-- FOOTER -->
+        <div class="bottom-text">
+            Don’t have an account?
+            <a href="#">Register</a>
+        </div>
+
     </div>
+
 </div>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Validation Script -->
+<!-- VALIDATION -->
 <script>
 (() => {
     'use strict';
+
     const forms = document.querySelectorAll('.needs-validation');
 
     Array.from(forms).forEach(form => {
         form.addEventListener('submit', event => {
+
             if (!form.checkValidity()) {
                 event.preventDefault();
                 event.stopPropagation();
             }
+
             form.classList.add('was-validated');
+
         }, false);
     });
+
 })();
 </script>
 
