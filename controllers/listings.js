@@ -97,7 +97,8 @@ module.exports.createListing = async (req, res) => {
 module.exports.editListing=async(req,res)=>{
     let {id}=req.params;
     const listing=await Listing.findById(id);
-    res.render("listings/edit.ejs",{listing});
+    const allListings=await Listing.find({});
+    res.render("listings/edit.ejs",{listing, allListings});
 };
 module.exports.updatelisting=async (req, res) => {
     try {
