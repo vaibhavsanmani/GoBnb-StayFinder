@@ -16,7 +16,7 @@ const userRouter = require("./routes/user.js");
 const listings =require("./routes/listing.js");
 const reviewRoutes =require("./routes/review.js");
 const session=require("express-session");
-const MongoStore = require("connect-mongo").default;
+// const MongoStore = require("connect-mongo");
 const flash=require("connect-flash");
 const passport=require("passport");
 const LocalStrategy = require("passport-local").Strategy;
@@ -44,24 +44,23 @@ async function startServer() {
 
     console.log("✅ MongoDB Connected");
 
-    const store = MongoStore.create({
-      mongoUrl: dbUrl,
-      crypto: {
-        secret: process.env.SECRET,
-      },
-      touchAfter: 24 * 3600,
-    });
+    // const store = MongoStore.create({
+    //   mongoUrl: dbUrl,
+    //   crypto: {
+    //     secret: process.env.SECRET,
+    //   },
+    //   touchAfter: 24 * 3600,
+    // });
 
     const sessionOptions = {
-      store,
-      secret: process.env.SECRET,
-      resave: false,
-      saveUninitialized: true,
-      cookie: {
-        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-      },
-    };
+  secret: process.env.SECRET || "secretkey",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  },
+};
 
     app.use(session(sessionOptions));
     app.use(flash());
