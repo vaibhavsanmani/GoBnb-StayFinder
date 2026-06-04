@@ -35,21 +35,19 @@ router.get("/new",isLoggedIn,listingController.renderNewForm);
 router.get("/about", (req, res) => {
     res.render("listings/about");
 });
+
+//Edit Route
+router.get("/:id/edit",isLoggedIn, listingController.editListing);
+
 router
     .route("/:id")
     .get(wrapAsync(listingController.showListing))
     .put(
         isLoggedIn,
         upload.single("listing[image]"),
-        wrapAsync(listingController.updatelisting),
         validateListing,
+        wrapAsync(listingController.updatelisting),
     )
     .delete(isLoggedIn,listingController.deleteListing)
-
-//About Route
-router.get("/about", listingController.about);
-
-//Edit Route
-router.get("/:id/edit",isLoggedIn, listingController.editListing);
 
 module.exports=router;
