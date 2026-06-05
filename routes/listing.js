@@ -37,7 +37,11 @@ router.get("/about", (req, res) => {
 });
 
 //Edit Route
-router.get("/:id/edit",isLoggedIn, listingController.editListing);
+router.get(
+    "/:id/edit",
+    isLoggedIn,
+    wrapAsync(listingController.editListing)
+);
 
 router
     .route("/:id")

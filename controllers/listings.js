@@ -36,69 +36,54 @@ module.exports.createListing = async (req, res) => {
 
   const address = `${newListing.location}, ${newListing.country}`;
 
-  try {
-
-    const geoRes = await axios.get(
-      "https://maps.googleapis.com/maps/api/geocode/json",
-      {
-        params: {
-          address: address,
-          key: process.env.MAP_API_KEY
-        }
+  const geoRes = await axios.get(
+    "https://api.opencagedata.com/geocode/v1/json",
+    {
+      params: {
+        q: address,
+        key: process.env.OPENCAGE_API_KEY
       }
-    );
-
-    // ===============================
-    // ❌ INVALID LOCATION
-    // ===============================
-    if (geoRes.data.results.length === 0) {
-
-      console.log("❌ Invalid location entered:", address);
-
-      // fallback coordinates (India center)
-      const fallback = { lat: 20.5937, lng: 78.9629 };
-
-      newListing.geometry = {
-        type: "Point",
-        coordinates: [fallback.lng, fallback.lat]
-      };
-
-      req.flash("error", "Invalid location. Default location used.");
     }
+  );
 
-    // ===============================
-    // ✅ VALID LOCATION
-    // ===============================
-    else {
+  if (geoRes.data.results.length > 0) {
+    const loc = geoRes.data.results[0].geometry;
 
-      const loc = geoRes.data.results[0].geometry.location;
+    newListing.geometry = {
+      type: "Point",
+      coordinates: [loc.lng, loc.lat]
+    };
+  } else {
+    const fallback = { lat: 20.5937, lng: 78.9629 };
 
-      console.log("✅ Address:", address);
-      console.log("Latitude:", loc.lat);
-      console.log("Longitude:", loc.lng);
-
-      newListing.geometry = {
-        type: "Point",
-        coordinates: [loc.lng, loc.lat]
-      };
-    }
-
-    await newListing.save();
-    req.flash("success", "Listing created!");
-    res.redirect("/listings");
-
-  } catch (err) {
-    console.log("Geocoding error:", err.message);
-    req.flash("error", "Location service failed");
-    res.redirect("/listings/new");
+    newListing.geometry = {
+      type: "Point",
+      coordinates: [fallback.lng, fallback.lat]
+    };
   }
+  try{
+      await newListing.save();
+      req.flash("success", "Listing created!");
+      res.redirect("/listings");
+
+    } catch (err) {
+      console.log("Geocoding error:", err.message);
+      req.flash("error", "Location service failed");
+      res.redirect("/listings/new");
+    }
 };
 
-module.exports.editListing=async(req,res)=>{
-    let {id}=req.params;
-    const listing=await Listing.findById(id);
-    const allListings=await Listing.find({});
-    res.render("listings/edit.ejs",{listing, allListings});
+module.exports.editListing = async (req, res) => {
+    let { id } = req.params;
+
+    const listing = await Listing.findById(id);
+
+    if (!listing) {
+        req.flash("error", "Listing not found");
+        return res.redirect("/listings");
+    }
+
+    res.render("listings/edit.ejs", { listing });
 };
 module.exports.updatelisting=async (req, res) => {
     try {

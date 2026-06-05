@@ -80,6 +80,9 @@ async function startServer() {
         next();
     })
 
+    app.get("/test-auth", (req, res) => {
+    res.send(`Authenticated: ${req.isAuthenticated()}`);  
+    });
     app.use("/listings",listings);
     app.use("/listings/:id/reviews", reviewRoutes);
     app.use("/", userRouter);
